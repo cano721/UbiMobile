@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e31fb89-a6c6-48b5-9ffc-59c20ce4524d" name="Default Changelist" comment="" />
+    <list default="true" id="7e31fb89-a6c6-48b5-9ffc-59c20ce4524d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adminapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loginapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/loginapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/inner-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inner-page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/park/parkpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/park/parkpage.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,7 +24,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1qsEJuyCjPCjz4JWiTB2keDuCZT" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
