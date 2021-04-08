@@ -72,7 +72,7 @@
 
 계해범 [**cano721**](https://github.com/cano721)
 
-조재언 [**angriff1**](https://github.com/angriff1)
+목민수 [**angriff1**](https://github.com/angriff1)
 
 박수민 [**soomin98**](https://github.com/soomin98)
 
