@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e31fb89-a6c6-48b5-9ffc-59c20ce4524d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../android/app/src/main/java/com/example/ubimobile/Driving_main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/example/ubimobile/Driving_main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android/app/src/main/res/layout/driving_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../android/app/src/main/res/layout/driving_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android/app/src/main/res/layout/parking_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../android/app/src/main/res/layout/parking_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/hero-logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/img/hero-logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inner-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inner-page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/img/portfolio/car.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/img/portfolio/car.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/park/parkpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/park/parkpage.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,5 +78,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
