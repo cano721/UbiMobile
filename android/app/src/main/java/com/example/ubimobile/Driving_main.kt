@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 class Driving_main : Fragment {
-
     constructor(){
 
     }
