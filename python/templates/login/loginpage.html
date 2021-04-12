@@ -1,9 +1,77 @@
-{% extends "inner-page.html" %}
-
 {% load static %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+  <title>UbiMobile</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-{% endblock %}
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+  <!-- 경륜 쓴거 -->
+  <script src = "jquery-3.4.1.js"></script>
+
+    </head>
+<body>
+    <section id="hero">
+    <div class="hero-container">
+      <a href="" class="hero-logo" data-aos="zoom-in"><img src="static/assets/img/hero-logo.png" alt=""></a>
+      <section class = "login-form">
+        <h3>로그인</h3>
+        <form action="">
+          <div class = "int-area">
+            <input type="text" name="id" id="id" autocomplete="off" required>
+            <label for = "id">이메일 주소</label>
+          </div>
+          <div class = "int-area">
+            <input type="password" name="pwd" id="pwd" autocomplete="off" required>
+            <label for = "id">비밀번호</label>
+          </div>
+          <div class ="btn-area">
+            <button id="btn" type="submit">로그인</button>
+          </div>
+        </form>
+        <div class="caption">
+          <a href="">"이메일 주소를 잊으셨나요?" |</a>
+          <a href="">"비밀번호를 잊으셨나요?"</a>
+        </div>
+        <div class ="btn-area2">
+            <button id="btn2" type="submit">계정 생성하기</button>
+          </div>
+      </section>
+    </div>
+  </section><!-- End Hero -->
+ <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery-sticky/jquery.sticky.js' %}"></script>
+  <script src="{% static 'assets/vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+</html>
