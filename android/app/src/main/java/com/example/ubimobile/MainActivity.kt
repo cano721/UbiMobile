@@ -10,11 +10,11 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : FragmentActivity() {
-    val driving_view = Driving_main()
-    val driving_test = Driving_main()
-    val driving_test2 = Driving_main()
-    val driving_test3 = Parking_main()
-    val driving_test4 = Driving_main()
+    val driving_view = Driving_fragment()
+    val driving_test = Driving_fragment()
+    val driving_test2 = Driving_fragment()
+    val driving_test3 = Parking_fragment()
+    val driving_test4 = Driving_fragment()
     var fragmentList = ArrayList<Fragment>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
