@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Joystick.iml" filepath="$PROJECT_DIR$/.idea/Joystick.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Joystick.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Joystick.app.iml" />
+    </modules>
+  </component>
+</project>
