@@ -10,6 +10,5 @@ class DriveCamActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drive_cam)
         web_view_cam.loadUrl("http://192.168.200.127:8088")
-
     }
 }

@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e31fb89-a6c6-48b5-9ffc-59c20ce4524d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../android/app/src/main/java/com/example/ubimobile/DriveCamActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/example/ubimobile/DriveCamActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inner-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inner-page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/park/parkpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/park/parkpage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login/loginpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login/loginpage.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +42,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/assets/img/portfolio" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
