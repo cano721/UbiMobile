@@ -11,8 +11,6 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.UbiMobile">
-        <activity android:name=".DriveCamActivity"
-            android:screenOrientation="landscape" />
         <activity android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".MainActivity">
