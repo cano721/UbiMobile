@@ -35,13 +35,20 @@
 
 #### 개발 환경
 
-* 라즈베리파이
-* 아두이노
-* 안드로이드 스튜디오
+* 라즈베리파이 (https://www.raspberrypi.org/)
+  * Raspberry Pi OS with desktop and recommended software / Kernel version: 5.10
+* 아두이노 (https://www.arduino.cc/))
+  *  Version : Arduino IDE 1.8.13
+* 안드로이드 스튜디오 (https://developer.android.com/studio?hl=ko)
+  * Version : 4.1.1
 * 코틀린
+* 파이참 (https://www.jetbrains.com/pycharm/)
+  * Community Version
 * 파이썬
+  * Version : 3.6.4
 * mysql
-* MongoDB
+* MongoDB (https://www.mongodb.com/)
+  * Version : 2.6.4 / windows_x86_64 x64
 
 
 

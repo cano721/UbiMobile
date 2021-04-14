@@ -11,7 +11,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="31dp" />
+        android:layout_height="125dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -63,28 +63,29 @@
 
         <ImageButton
             android:id="@+id/imageButton4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
+            android:layout_width="70dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="30dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/klaxon11"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/klaxon11" />
 
         <ImageButton
             android:id="@+id/imageButton5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/head5"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/light2" />
 
         <ImageButton
             android:id="@+id/imageButton7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
+            android:layout_width="70dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="30dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/window5" />
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/window55" />
 
     </LinearLayout>
 
@@ -121,9 +122,10 @@
             android:id="@+id/imageButton8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="30dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/bonnet12" />
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/bonnet8" />
 
         <ImageButton
             android:id="@+id/imageButton9"
@@ -131,6 +133,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="50dp"
             android:layout_weight="1"
+            android:background="@android:color/transparent"
             app:srcCompat="@drawable/trunk" />
 
 

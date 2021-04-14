@@ -4,3 +4,6 @@ from django.shortcuts import render
 
 def loginpage(request):
     return render(request,'login/loginpage.html')
+
+def joinpage(request):
+    return render(request,'join/joinpage.html')
