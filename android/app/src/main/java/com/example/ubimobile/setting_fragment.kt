@@ -6,7 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-class Driving_fragment : Fragment {
+class setting_fragment : Fragment {
+
     constructor(){
 
     }
