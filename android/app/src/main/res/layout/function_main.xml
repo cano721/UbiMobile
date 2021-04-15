@@ -67,16 +67,18 @@
             android:layout_height="60dp"
             android:layout_marginLeft="30dp"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
-            app:srcCompat="@drawable/klaxon11" />
+
+            android:src="@drawable/klaxon11"
+            android:background="@android:color/transparent"/>
 
         <ImageButton
             android:id="@+id/imageButton5"
             android:layout_width="70dp"
             android:layout_height="60dp"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
-            app:srcCompat="@drawable/light2" />
+            android:src="@drawable/head5"
+            android:background="@android:color/transparent"/>
+
 
         <ImageButton
             android:id="@+id/imageButton7"
@@ -85,7 +87,7 @@
             android:layout_marginRight="30dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            app:srcCompat="@drawable/window55" />
+            android:src="@drawable/window5" />
 
     </LinearLayout>
 
@@ -125,7 +127,7 @@
             android:layout_marginLeft="30dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            app:srcCompat="@drawable/bonnet8" />
+            android:src="@drawable/bonnet12" />
 
         <ImageButton
             android:id="@+id/imageButton9"
@@ -134,7 +136,7 @@
             android:layout_marginRight="50dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            app:srcCompat="@drawable/trunk" />
+            android:src="@drawable/trunk" />
 
 
 

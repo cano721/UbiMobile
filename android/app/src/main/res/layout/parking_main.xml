@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/gradient">
 
     <Space
         android:layout_width="match_parent"
@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:text="1 floor"
             android:textColor="#EC6C3D"
+            android:background="#00ff0000"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             />
         <Button
@@ -29,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2 floor"
+            android:background="#00ff0000"
             android:textColor="@color/white"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             />
@@ -51,22 +53,21 @@
             android:id="@+id/parkImg1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-
-            app:srcCompat="@drawable/park1" />
+            android:src="@drawable/park1" />
 
         <ImageView
             android:id="@+id/parkImg2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
 
-            app:srcCompat="@drawable/line1" />
+            android:src="@drawable/line1" />
 
         <ImageView
             android:id="@+id/parkImg3"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
 
-            app:srcCompat="@drawable/line1" />
+            android:src="@drawable/line1" />
 <Space
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -77,8 +78,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
 
         <Space
             android:layout_width="wrap_content"
@@ -86,22 +86,22 @@
             android:layout_weight="4" />
 
         <ImageView
+            android:id="@+id/parkImg4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/line2" />
+
+        <ImageView
             android:id="@+id/parkImg5"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/line2" />
+            android:src="@drawable/line2" />
 
         <ImageView
             android:id="@+id/parkImg6"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/line2" />
-
-        <ImageView
-            android:id="@+id/parkImg7"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/line2" />
+            android:src="@drawable/line2" />
 
         <Space
             android:layout_width="wrap_content"
@@ -109,12 +109,6 @@
             android:layout_weight="4" />
 
     </LinearLayout>
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        />
-
 
 
     <Space
