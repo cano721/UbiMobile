@@ -4,8 +4,29 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <style>
+body{background-color:#F5F5F5;} * {margin:0; padding:0;}
 
-  <title>UbiMobile</title>
+div{width:460px; margin:30px auto;}
+
+li{list-style:none; margin:15px 0;}
+
+input,select {height:50px;}
+select#month{width:172px; height:49px;}
+label{line-height:30px; font-size:15px; font-weight:bold;}
+button{
+    font-size:15px;
+    cursor:pointer;
+    color:white;
+    display:block;
+    background-color:#090;
+    border:0px solid #090;
+    padding:22px 190px;
+    float: center;}
+#sex{width:460px;}
+
+
+    </style>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -47,7 +68,7 @@
                     <label>이름<br> <input type="text" id="name" size="60" required></label>
                 </li>
                 <li>
-                    <label>생년월일<br> <input type="text" id="year" size="15" placeholder="년" required></label>
+                    <label>생년월일<br> <input type="text" id="year" size="15" placeholder="년" required>
                     <select id="month">
                         <option value="0">1월</option>
                         <option value="0">2월</option>
@@ -63,6 +84,7 @@
                         <option value="0">12월</option>
                     </select>
                     <input type="text" id="day" size="15" placeholder="일" required>
+                    </label>
                 </li>
                 <li>
                     <label>성별<br><select id="sex">
@@ -73,21 +95,11 @@
                     </label>
                 </li>
                 <li>
-                    <label>본인 확인 이메일<small>선택</small><br>
-                        <input type="email" id="e-mail" size="60" placeholder="선택입력">
+                    <label>본인 확인 이메일<small>(선택)</small><br>
+                        <input type="email" id="e-mail" size="59" placeholder="e-mail">
                     </label>
                 </li>
-                <li>
-                    <label>휴대전화</label><br>
-                    <select id="sel_tel">
-                        <option value="korea">대한민국 +82</option>
-                    </select><br>
-                </li>
-                <li>
-                    <input type="tel" id="tel_no" size="32" placeholder="전화번호 입력" required>
-                    <button type="button" id="btn">인증번호 받기</button>
-                </li>
-                <input type="text" id="security" size="60" placeholder="인증번호를 입력하세요" required>
+
                 <li>
                     <button type="submit" class="sub">가입하기</button>
                 </li>
