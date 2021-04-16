@@ -3,7 +3,7 @@ from frame.parkapp.parking_sql import Sql
 from frame.parkapp.parking_value import Parking_floor
 
 
-class UsersDb(Db):
+class ParkDb(Db):
     # def select(self):
     #     conn = super().getConnection();
     #     cursor = conn.cursor();

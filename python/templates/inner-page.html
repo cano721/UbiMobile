@@ -71,12 +71,17 @@
           <li><a href="https://github.com/cano721/UbiMobile">배경륜</a></li>
 
           <li class="nav-logo"><a href=""><img src="static/assets/img/logo.png" alt="" class="img-fluid"></a></li>
-
-          <li><a href="/parkpage">Park</a></li>
-          <li><a href="/adminpage">Admin</a></li>
-          <li><a href="/loginpage">login</a></li>
-          <li><a href="/loginpage">register</a></li>
-
+          {% if 'suser' in request.session %}
+          <li><a href="{% url 'parkpage' %}">Park</a></li>
+          <li><a href="{% url 'adminpage' %}">Admin</a></li>
+          <li><a href="{% url 'loginpage' %}">login</a></li>
+          <li><a href="{% url 'joinpage' %}">register</a></li>
+          {% else %}
+          <li><a href="{% url 'loginpage' %}">Park</a></li>
+          <li><a href="{% url 'loginpage' %}">Admin</a></li>
+          <li><a href="{% url 'loginpage' %}">login</a></li>
+          <li><a href="{% url 'joinpage' %}">register</a></li>
+          {% endif %}
         </ul>
       </nav><!-- .nav-menu -->
 
