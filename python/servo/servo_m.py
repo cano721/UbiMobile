@@ -41,8 +41,6 @@ if __name__ == "__main__":
         print("종료")
         GPIO.cleanup()
 
-
-
 try:
     while True:
         servo.ChangeDutyCycle(3)

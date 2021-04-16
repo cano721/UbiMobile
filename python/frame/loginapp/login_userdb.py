@@ -1,6 +1,8 @@
-from frame.parkapp.parking_db import Db
-from frame.parkapp.parking_sql import Sql
-from frame.parkapp.parking_value import Parking_floor
+from frame.loginapp.login_db import Db
+from frame.loginapp.login_sql import Sql
+from frame.loginapp.login_value import Users
+
+
 
 
 class UsersDb(Db):
@@ -12,17 +14,15 @@ class UsersDb(Db):
     #     super().close(conn,cursor);
     #     return u[0];
 
-    def select(self):
+    def selectid(self,id):
         conn = super().getConnection();
         cursor = conn.cursor();
-        cursor.execute(Sql.parking_floor_select);
-        result = cursor.fetchall();
-        all = [];
-        for u in result:
-            parking_floor = Parking_floor(u[0],u[1],u[2],u[3]);
-            all.append(parking_floor);
+        cursor.execute(Sql.selectid % id);
+        u = cursor.fetchone();
+
+        users = Users(u[0],u[1],u[2],u[3],u[4]);
         super().close(conn,cursor);
-        return all;
+        return users;
 
 
 
@@ -43,13 +43,13 @@ class UsersDb(Db):
 #     for r in recipe:
 #         print(r)
 
-def select_test():
-    parking = UsersDb().select();
-    for i in parking:
-        print(i)
+
+def select_idtest():
+    login = UsersDb().selectid("id01");
+    print(login)
 #
 #
 #
 if __name__ == '__main__':
     # users_counter_test(10,20)
-    select_test()
+    select_idtest()
