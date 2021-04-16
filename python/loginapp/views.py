@@ -8,3 +8,9 @@ def loginpage(request):
 def joinpage(request):
 
     return render(request,'login/joinpage.html')
+
+def loginimpl(request):
+    id = request.post['id']
+    pwd = request.post['pwd']
+    context = {  }
+    return render(request,'park/parkpage.html',context)

@@ -18,10 +18,6 @@ class FunctionActivity : AppCompatActivity(),View.OnClickListener {
 
 
     }
-
-
-
-
     override fun onClick(v: View?) {
         if(v is Button){
             var mybtn = v as Button
@@ -41,5 +37,4 @@ class FunctionActivity : AppCompatActivity(),View.OnClickListener {
     fun unlock(){
 
     }
-
 }
