@@ -21,4 +21,5 @@ urlpatterns = [
     path('',include('adminapp.urls')),
     path('',include('loginapp.urls')),
     path('',include('parkapp.urls')),
+
 ]
