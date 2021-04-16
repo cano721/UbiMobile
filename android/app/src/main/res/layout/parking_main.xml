@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:text="2 floor"
             android:background="#00ff0000"
-            android:textColor="@color/white"
+            android:textColor="#FFFFFF"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             />
 
