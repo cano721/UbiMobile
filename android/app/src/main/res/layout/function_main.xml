@@ -69,7 +69,7 @@
         android:layout_height="66dp">
 
         <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/klaxon"
             android:layout_width="70dp"
             android:layout_height="60dp"
             android:layout_marginLeft="30dp"

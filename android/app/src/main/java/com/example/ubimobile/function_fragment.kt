@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.ubimobile.sensor.MyMqtt
 
 class function_fragment : Fragment {
+    lateinit var mqttClient:MyMqtt //박수민추가
     constructor(){
 
     }
@@ -19,4 +21,8 @@ class function_fragment : Fragment {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
+
+
+
+
 }
