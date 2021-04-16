@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/button"
         android:layout_gravity="center"
+        android:textColor="@color/white"
         android:text="UNLOCK" />
 
 
