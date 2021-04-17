@@ -10,7 +10,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : FragmentActivity() {
-    val driving_view = Driving_fragment()
+    val driving_view = DriveCamFragment()
     val function_view = function_fragment()
     val setting_view = setting_fragment()
     val parking_view = Parking_fragment()
