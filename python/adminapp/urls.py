@@ -22,6 +22,9 @@ from adminapp import views
 urlpatterns = [
     path('adminpage',views.adminpage,name='adminpage'),
     path('park_adminpage',views.park_adminpage,name='park_adminpage'),
+    path('car_infopage',views.car_infopage,name='car_infopage'),
+    path('data_infopage',views.data_infopage,name='data_infopage'),
+    path('park_adminUpdate',views.park_adminUpdate,name='park_adminUpdate'),
     path('inner-page', TemplateView.as_view(template_name='inner-page.html'), name='inner-page'),
     path('',TemplateView.as_view(template_name='startpage.html'), name='startpage'),
 ]
