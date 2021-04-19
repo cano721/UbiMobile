@@ -30,85 +30,39 @@
         </div>
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="static/assets/img/portfolio/empty.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="static/assets/img/portfolio/car.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="static/assets/img/portfolio/car.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="static/assets/img/portfolio/car.png" class="img-fluid" alt="">
-
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="static/assets/img/portfolio/empty.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="static/assets/img/portfolio/empty.png" class="img-fluid" alt="">
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="static/assets/img/portfolio/car2.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="static/assets/img/portfolio/car2.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="static/assets/img/portfolio/empty.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="static/assets/img/portfolio/empty.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="static/assets/img/portfolio/empty.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="static/assets/img/portfolio/empty.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-
+          {% for l in parking_floor %}
+            {% if l.pf_floor == 1 %}
+              {% if l.pf_data == 1 %}
+                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                  <div class="portfolio-wrap">
+                    <img src="static/assets/img/portfolio/car.png" class="img-fluid" alt="">
+                  </div>
+                </div>
+              {% else %}
+                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                  <div class="portfolio-wrap">
+                    <img src="static/assets/img/portfolio/empty.png" class="img-fluid" alt="">
+                  </div>
+                </div>
+              {% endif%}
+            {% endif %}
+            {% if l.pf_floor == 2 %}
+              {% if l.pf_data == 1 %}
+                <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                  <div class="portfolio-wrap">
+                    <img src="static/assets/img/portfolio/car2.png" class="img-fluid" alt="">
+                  </div>
+                </div>
+              {% else %}
+                <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                  <div class="portfolio-wrap">
+                    <img src="static/assets/img/portfolio/empty.png" class="img-fluid" alt="">
+                  </div>
+                </div>
+              {% endif%}
+            {% endif %}
+          {% endfor %}
         </div>
-
       </div>
     </section><!-- End Portfolio Section -->
 
