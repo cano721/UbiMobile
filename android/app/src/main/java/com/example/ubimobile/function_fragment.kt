@@ -6,9 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+
+
+import com.example.ubimobile.sensor.MyMqtt
+
+
+
+
 import kotlinx.android.synthetic.main.function_main.*
 
 class function_fragment : Fragment {
+    lateinit var mqttClient:MyMqtt //박수민추가
     constructor(){
 
     }
@@ -30,4 +38,8 @@ class function_fragment : Fragment {
             }
         }
     }
+
+
+
+
 }
