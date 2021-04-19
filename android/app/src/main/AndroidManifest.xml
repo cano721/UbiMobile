@@ -12,11 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UbiMobile"
         android:usesCleartextTraffic="true">
-<<<<<<< HEAD
 
-=======
         <activity android:name=".FunctionActivity" />
->>>>>>> 195f182d12e2b5fae8ac83a3b28261275e0814d2
+
+
+
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login" />
