@@ -1,12 +1,10 @@
 from django.shortcuts import render
 
 # Create your views here.
-from frame.adminapp.admin_userdb import AdminDb
-from frame.parkapp.parking_userdb import ParkDb
 
 
 def parkpage(request):
-    parking_floor = ParkDb().select()
+    parking_floor = Parking_floor.objects.get()
     context = {
         'parking_floor' : parking_floor
     }

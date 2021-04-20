@@ -1,10 +1,9 @@
 import spidev
 import time
-import RPi.GPIO as GPIO
+import paho.mqtt.client as mqtt
 
 GPIO.setmode(GPIO.BCM)
-LED = 18
-GPIO.setup(LED, GPIO.OUT, initial=GPIO.LOW)
+
 # 딜레이 시간(센서 측정 간격)
 delay = 1
 # MCP3008 채널 중 센서에 연결한 채널 설정
@@ -26,10 +25,11 @@ def readadc(adcnum):
 while True:
     # readadc 함수로 pot_channel의 SPI 데이터를 읽기
     pot_value = readadc(pot_channel)
-    if pot_value < 100 :
-         GPIO.output(LED, GPIO.HIGH)
-    else :
-         GPIO.output(LED, GPIO.LOW)
+    if pot_value > 100 :
+        client = mqtt.Client()
+        client.on_connect = self.on_connect
+        client.connect("192.168.0.202", 1883, 60)
+        client.publish("mydata/park", "1")
     print("---------------------------")
     print("POT value: %d" % pot_value)
     time.sleep(delay)
