@@ -13,7 +13,7 @@
         android:theme="@style/Theme.UbiMobile"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".FunctionActivity" />
+
 
 
 
