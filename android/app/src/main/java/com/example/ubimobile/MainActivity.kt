@@ -16,10 +16,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage
 import java.lang.Exception
 
 
-class MainActivity : FragmentActivity(), View.OnClickListener {
-    lateinit var mqttClient : MyMqtt //박수민추가
-
-
+class MainActivity : FragmentActivity(){
 
     val driving_view = DriveCamFragment()
 
@@ -57,8 +54,8 @@ class MainActivity : FragmentActivity(), View.OnClickListener {
         }
         viewPager2.adapter = adapter
 
-        TabLayoutMediator(tabs,viewPager2){tab, position ->
-            when(position){
+        TabLayoutMediator(tabs, viewPager2) { tab, position ->
+            when (position) {
                 0 -> {
                     tab.text = "주행화면"
                     tab.icon = ContextCompat.getDrawable(this, R.drawable.drivig_icon);
@@ -81,35 +78,5 @@ class MainActivity : FragmentActivity(), View.OnClickListener {
                 }
             }
         }.attach()
-
-        mqttClient = MyMqtt(this,"tcp://172.30.1.3:1883")//박수민추가
-        try {
-            mqttClient.setCallback(::onReceived)
-            mqttClient.connect(arrayOf<String>("iot/#"))
-        }catch (e: Exception){
-            e.printStackTrace()
-        }
-        klaxon.setOnClickListener(this)
-        imageButton5.setOnClickListener(this)
     }
-    fun onReceived(topic:String,message:MqttMessage){//박수민추가
-        val msg = String(message.payload)
-        Log.d("mymqtt",msg)
-    }
-
-    fun publish(data:String){//박수민추가
-        mqttClient.publish("mydata/buzzer",data)
-
-    }
-
-    override fun onClick(v: View?) {//박수민추가
-        var data:String = ""
-        if(v?.id==R.id.klaxon){
-            data="buzzer_on"
-        }else{
-            data="buzzer_off"
-        }
-        publish(data)
-    }
-
 }

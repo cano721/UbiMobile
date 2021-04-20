@@ -75,7 +75,6 @@
             android:layout_height="60dp"
             android:layout_marginLeft="30dp"
             android:layout_weight="1"
-
             android:src="@drawable/klaxon11"
             android:background="@android:color/transparent"/>
 
