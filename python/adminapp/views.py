@@ -1,7 +1,6 @@
 from django.shortcuts import render
 
 # Create your views here.
-from frame.adminapp.admin_userdb import AdminDb
 
 
 def adminpage(request):
@@ -10,10 +9,11 @@ def adminpage(request):
 def park_adminpage(request):
     u_id = request.session['suser']
     try:
-        parking = AdminDb().select(u_id)
+        parking = Parking.objects.get(u_id=u_id)
         context = {
             "parking": parking
         }
+        print(parking)
         return render(request,'admin/park_adminpage.html',context)
     except:
         return render(request,'admin/park_adminpage.html')
