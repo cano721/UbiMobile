@@ -15,14 +15,11 @@ import kotlinx.android.synthetic.main.function_main.*
 import org.eclipse.paho.client.mqttv3.MqttMessage
 import java.lang.Exception
 
-<<<<<<< HEAD
+
 class MainActivity : FragmentActivity(), View.OnClickListener {
     lateinit var mqttClient : MyMqtt //박수민추가
-    val driving_view = Driving_fragment()
-=======
-class MainActivity : FragmentActivity() {
     val driving_view = DriveCamFragment()
->>>>>>> 195f182d12e2b5fae8ac83a3b28261275e0814d2
+
     val function_view = function_fragment()
     val setting_view = setting_fragment()
     val parking_view = Parking_fragment()
