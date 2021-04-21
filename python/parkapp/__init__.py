@@ -1,0 +1,1 @@
+default_app_config = 'parkapp.mqtt_sub.Parksub'
