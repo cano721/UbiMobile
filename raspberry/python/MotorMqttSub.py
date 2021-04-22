@@ -13,6 +13,7 @@ class MotorMqttSub:
         self.motor = Motor.Motor(client)
         self.motor.start()
         self.motor.setup()
+        self.manual = True
         client.loop_forever()
 
     def on_connect(self, client, userdata, flags, rc):
@@ -33,13 +34,22 @@ class MotorMqttSub:
             command = m_json.get('command')
 
             if speed is not None:
-                self.motor.move(speed, leftRatio, rightRatio)
+                if self.manual:
+                    self.motor.move(speed, leftRatio, rightRatio)
+                else:
+                    print("Manual activity locked...")
             elif command == 'on':
                 self.motor.setup()
                 print("Motor on")
             elif command == 'off':
                 self.motor.cleanup()
                 print("Motor off")
+            elif command == 'manual':
+                self.manual = True
+                print("Manual mode on")
+            elif command == 'auto':
+                self.manual = False
+                print("Manual mode off")
             # data = payload.split(',')
             # if len(data) == 3:
             #     data[0] = int(data[0])
@@ -47,7 +57,7 @@ class MotorMqttSub:
             #     data[2] = float(data[2])
             #     print(data)
             else:
-                print("Wrong input")
+                print("Unknown command")
         except:
             print("Wrong input")
 
