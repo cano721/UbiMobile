@@ -17,13 +17,9 @@ def loginimpl(request):
     id = request.POST['id']
     pwd = request.POST['pwd']
     try:
-        print(1)
         usered = Users.objects.get(u_id=id)
-        print(2)
-        parking_floor = Parking_floor.objects.all()
-        print(3)
+        parking_floor = Parking_floor.objects.filter(u_id=id)
         if pwd == usered.u_pwd:
-            print(4)
             request.session['suser'] = id
             context = {
                 'users' : usered,
@@ -36,5 +32,6 @@ def loginimpl(request):
         context = {
             'login' : 'fail'
         }
+
         return render(request,'login/loginpage.html',context)
     return render(request,'park/parkpage.html',context)
