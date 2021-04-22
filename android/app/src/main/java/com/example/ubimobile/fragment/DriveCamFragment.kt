@@ -1,4 +1,4 @@
-package com.example.ubimobile
+package com.example.ubimobile.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.ubimobile.R
 import kotlinx.android.synthetic.main.fragment_drive_cam.*
 
 class DriveCamFragment : Fragment() {
