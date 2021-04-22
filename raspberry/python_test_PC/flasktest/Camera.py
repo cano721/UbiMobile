@@ -1,3 +1,5 @@
+import cv2
+import numpy as np
 import picamera
 import threading
 import time
@@ -22,6 +24,8 @@ class Camera:
             Camera.thread.start()  # 쓰레드를 시작하겠다는 의미
             while self.frame is None:
                 time.sleep(1)
+        file_bytes = np.asarray(bytearray(self.frame), dtype=np.uint8)
+        self.img = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
         return self.frame, self.img
 
     # 독립적인 실행의 한 단위로 파이카메라로 찍은 영상을 프레임단위로 지속적으로 보내주는 역할을 하는 메소드
@@ -42,5 +46,4 @@ class Camera:
 
                 stream.seek(0)
                 stream.truncate()  # 파일의 내용을 비움
-    file_bytes = np.asarray(bytearray(cls.frame), dtype=np.uint8)
-    cls.img = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
+

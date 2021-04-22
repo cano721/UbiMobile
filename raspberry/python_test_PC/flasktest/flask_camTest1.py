@@ -8,14 +8,15 @@ import threading
 from time import sleep
 from Camera import Camera
 from imageProcess import imageProcess
-from MotorMqttSub import MotorMqttSub
+from Motor import Motor
+# from MotormqttSub import MotormqttSub
 from collections import deque
 
 app = Flask(__name__)
 GPIO.setmode(GPIO.BCM)
 auto = False
-myname = "192.168.200.169"
-mqttSub = MotorMqttSub(myname)
+myname = "192.168.200.183"
+# mqttSub = MotormqttSub(myname)
 
 MAX_DECISION_LENGTH = 30
 decisions = deque([])
@@ -34,46 +35,55 @@ def show(camera):
 
         if auto:
             frame = img_show
-            mqttSub.manual = False
+            # mqttSub.manual = False
 
             if decision is not None:
-                speed = 40
+                speed = 30
                 if decision[2] > 5:
-                    ratio = 0.5
+                    ratio = 0.8
                 elif decision[2] > 3:
-                    ratio = 0.2
+                    ratio = 0.5
                 else:
                     ratio = 0
                 if decision[0]:
                     print("Left %d" % decision[2])
-                    mqttSub.motor.move(speed, leftRatio=ratio)
+                    # mqttSub.motor.move(speed, leftRatio=ratio)
+                    motor.move(speed, leftRatio=ratio)
                     decisions.append(LEFT)
                 elif decision[1]:
                     print("Right %d" % decision[2])
-                    mqttSub.motor.move(speed, rightRatio=ratio)
+                    # mqttSub.motor.move(speed, rightRatio=ratio)
+                    motor.move(speed, rightRatio=ratio)
                     decisions.append(RIGHT)
                 else:
-                    mqttSub.motor.move(70)
+                    # mqttSub.motor.move(70)
+                    motor.move(50)
                     decisions.append(FRONT)
                 if len(decisions) > MAX_DECISION_LENGTH:
                     decisions.popleft()
             else:
                 if len(decisions) == 0:
-                    mqttSub.motor.move(0)
+                    # mqttSub.motor.move(0)
+                    motor.move(0)
                     decisions.append(STOP)
                 else:
                     decision = decisions.popleft()
                     if decision == FRONT:
-                        mqttSub.motor.move(50)
+                        # mqttSub.motor.move(50)
+                        motor.move(40)
                     elif decision == LEFT:
-                        mqttSub.motor.move(40, leftRatio=0)
+                        # mqttSub.motor.move(40, leftRatio=0)
+                        motor.move(30, leftRatio=0)
                     elif decision == RIGHT:
-                        mqttSub.motor.move(40, RightRatio=0)
+                        # mqttSub.motor.move(40, RightRatio=0)
+                        motor.move(30, rightRatio=0)
                     else:
-                        mqttSub.motor.move(0)
+                        # mqttSub.motor.move(0)
+                        motor.move(0)
 
         else:
-            mqttSub.manual = True
+            # mqttSub.manual = True
+            pass
 
         cv2.waitKey(41)
 
@@ -106,7 +116,10 @@ def action(command):
 
 if __name__ == "__main__":
     try:
+        motor = Motor(None)
+        motor.setup()
         app.run(host="0.0.0.0", port="8088", debug=True, threaded=True)
     except KeyboardInterrupt:
         print("종료")
         GPIO.cleanup()
+
