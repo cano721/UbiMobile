@@ -42,5 +42,5 @@ class Camera:
 
                 stream.seek(0)
                 stream.truncate()  # 파일의 내용을 비움
-    file_bytes = np.asarray(bytearray(cls.frame), dtype=np.uint8)
-    cls.img = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
+    # file_bytes = np.asarray(bytearray(cls.frame), dtype=np.uint8)
+    # cls.img = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
