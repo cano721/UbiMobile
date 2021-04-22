@@ -1,18 +1,17 @@
-package com.example.ubimobile
+package com.example.ubimobile.fragment
 
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
-import android.os.Message
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import com.example.ubimobile.ParkData
+import com.example.ubimobile.R
 import kotlinx.android.synthetic.main.parking_main.*
-import kotlinx.android.synthetic.main.parking_main.view.*
 import org.json.JSONArray
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -33,6 +32,12 @@ class Parking_fragment : Fragment {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d("msg","번들뽑아오기")
+        var pf_id = arguments?.getString("pf_id")
+        var pf_data = arguments?.getString("pf_data")
+        Log.d("msg","${pf_id},${pf_data}")
+
+
 //        handler = object : Handler(Looper.myLooper()!!){
 //            override fun handleMessage(msg: Message) {
 //                when(msg.what){
@@ -77,19 +82,19 @@ class Parking_fragment : Fragment {
                             jsonobj.getInt("p_id"),jsonobj.getInt("pf_floor"),
                             jsonobj.getInt("pf_space"),jsonobj.getInt("pf_data"))
                     Log.d("http","데이터객체로변환....")
-                    activity!!.runOnUiThread {
-                        for(i in 1..6){
-                            var resid = resources.getIdentifier("parkImg"+i+1,"id",
-                                    activity?.applicationContext?.packageName)
-                            if(dto.pf_id == i){
-                                if(dto.pf_data == 1){
-                                    view.findViewById<ImageView>(resid).setImageResource(R.drawable.park1)
-                                }else{
-                                    view.findViewById<ImageView>(resid).setImageResource(R.drawable.line1)
-                                }
-                        }
-                        }
-                    }
+//                    activity!!.runOnUiThread {
+//                        for(i in 1..6){
+//                            var resid = resources.getIdentifier("parkImg"+i+1,"id",
+//                                    activity?.applicationContext?.packageName)
+//                            if(pf_id == i){
+//                                if(pf_data == 1){
+//                                    view.findViewById<ImageView>(resid).setImageResource(R.drawable.park1)
+//                                }else{
+//                                    view.findViewById<ImageView>(resid).setImageResource(R.drawable.line1)
+//                                }
+//                        }
+//                        }
+//                    }
 
                 }
             }

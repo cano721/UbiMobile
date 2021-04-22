@@ -1,4 +1,4 @@
-package com.example.ubimobile
+package com.example.ubimobile.fragment
 
 import android.graphics.Color
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import androidx.fragment.app.Fragment
+import com.example.ubimobile.R
 
 
 import com.example.ubimobile.sensor.MyMqtt
@@ -16,9 +17,7 @@ import com.example.ubimobile.sensor.MyMqtt
 
 
 import kotlinx.android.synthetic.main.function_main.*
-import kotlinx.android.synthetic.main.parking_main.*
 import org.eclipse.paho.client.mqttv3.MqttMessage
-import java.util.*
 
 class function_fragment : Fragment {
     lateinit var mqttClient: MyMqtt //박수민추가
