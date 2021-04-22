@@ -1,0 +1,23 @@
+1. 라이브러리
+    paho
+
+2. Subscriber개발(메시지수신자)
+    1) MQTT클라이언트 클래스 객체 생성
+        Client()
+        client_id : 브로커에 클라이언트가 연결될 때 사용되는 고유한 id문자열
+        clean_session : 브로커와 연결이 끊어졌을 때 클라이언트 정보를 지울지 여부를 결정
+        userdata : 사용자 데이터
+        protocol : MQTT의 버전(MQTTv311 or MQTTv31)
+        transport : 데이터를 전송하는 프로토콜(tcp or websocket)
+    2) 브로커에 연결될 떄 실행할 핸들러 함수를 구현하고 등록
+        - 브로커에 연결해서 토픽에 대한 구독을 신청
+    3) 토픽이 수신되면 실행할 핸들러 함수를 등록
+        - 토픽이 수신되면 처리할 작업들을 구현(led나 sensor등 라즈베리파이에 연결된 장비 제어)
+    4) subscriber를 브로커에 연결하기
+        connect()
+        host : 브로커의 ip
+        port : 브로커의 포트
+        keepalive : 브로커와 통신할 때 허용되는 최대 시간
+    5) 토픽이 수신될 때까지 대기
+
+3. Publisher개발(메세지 송신자)
