@@ -1,3 +1,4 @@
+import self
 import spidev
 import time
 import paho.mqtt.client as mqtt
@@ -25,11 +26,11 @@ def readadc(adcnum):
 while True:
     # readadc 함수로 pot_channel의 SPI 데이터를 읽기
     pot_value = readadc(pot_channel)
-    if pot_value > 100 :
+    if pot_value < 20 :
         client = mqtt.Client()
         client.on_connect = self.on_connect
         client.connect("192.168.0.202", 1883, 60)
-        client.publish("mydata/park", "1")
+        client.publish("mydata/shock", "1")
     print("---------------------------")
     print("POT value: %d" % pot_value)
     time.sleep(delay)

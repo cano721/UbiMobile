@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Parking
+from .models import Users
 
 
 class UsersSerializer(serializers.ModelSerializer):

@@ -17,16 +17,18 @@ GPIO.setup(buzzer, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(servoPin, GPIO.OUT)
 servo = GPIO.PWM(servoPin, 50)
 
-class MyMqtt_Sub():
+class Function_Sub():
     def __init__(self):
         client = mqtt.Client()
-        client.on_connect = self.on_connect
-        client.on_message = self.on_message
-        client.connect("192.168.0.202", 1883, 60)  # 노트북 ip 주소
+        client.on_connect = Function_Sub.on_connect
+        client.on_message = Function_Sub.on_message
+        client.connect("192.168.0.202", 1883, 60)
         wave = WaveSensorTest.Wave(client, "")
+
         wave.start()
         servo.start(0)
         client.loop_forever()
+
 
     def on_connect(self, client, userdata, flags, rc):
         print("connect.." + str(rc))
@@ -36,7 +38,6 @@ class MyMqtt_Sub():
             print("연결실패")
 
     def on_message(self, client, userdata, msg):
-
         myval = msg.payload.decode("utf-8")
         print(myval)
         print(msg.topic + "----" + str(myval))
@@ -54,7 +55,7 @@ class MyMqtt_Sub():
 
 if __name__ == "__main__":
     try:
-        mymqtt = MyMqtt_Sub()
+        mymqtt = Function_Sub()
 
     except KeyboardInterrupt:
         print("종료")
