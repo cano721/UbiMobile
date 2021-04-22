@@ -17,7 +17,7 @@ class MyMqtt(Thread):
     def on_connect(self, client, userdata, flags, rc):
         print("connect.." + str(rc))
         if rc == 0:
-            client.subscribe("mydata/park")
+            client.subscribe("mydata/#")
         else:
             print("연결실패")
 
