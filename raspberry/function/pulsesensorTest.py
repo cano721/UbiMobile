@@ -135,6 +135,7 @@ class PulseSensorTest(Thread):
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(buzzer, GPIO.OUT, initial=GPIO.LOW)
         self.value = ""
+        self.data = "basic"
 
         self.client = client
 
@@ -163,6 +164,9 @@ class PulseSensorTest(Thread):
                     self.value = 'pulse_error'
                     print("No Heartbeat found")
                 time.sleep(1)
-            self.client.publish("iot/pulse", self.value)
+                self.client.publish("iot/pulse", self.value)
+                if self.data == "stop":
+                    print("stop")
+                    break
         except:
             self.p.stopAsyncBPM()

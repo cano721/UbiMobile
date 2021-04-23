@@ -21,6 +21,7 @@ def readadc(adcnum):
     data = ((r[1] & 3) << 8) + r[2]
     return data
 
+
 while True:
     # readadc 함수로 pot_channel의 SPI 데이터를 읽기
     pot_value = readadc(pot_channel)
