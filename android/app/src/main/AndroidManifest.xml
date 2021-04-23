@@ -15,13 +15,9 @@
         android:theme="@style/Theme.UbiMobile"
         android:usesCleartextTraffic="true">
         <service android:name="org.eclipse.paho.android.service.MqttService" />
-        <activity android:name=".MainActivity"></activity>
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login" />
+        <activity android:name=".LoginActivity"></activity>
 
-
-        <activity android:name=".LoginActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,21 +1,22 @@
 package com.example.ubimobile.fragment
 
-import android.graphics.Color
-import android.os.Bundle
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.os.Build
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.ubimobile.R
-
-
 import com.example.ubimobile.sensor.MyMqtt
-
-
-
-
 import kotlinx.android.synthetic.main.function_main.*
 import org.eclipse.paho.client.mqttv3.MqttMessage
 
@@ -52,6 +53,35 @@ class function_fragment : Fragment {
 
     fun onReceived(topic: String, message: MqttMessage) {
         val msg = String(message.payload)
+        if(msg.equals("shocked")){
+            val bitmap = BitmapFactory.decodeResource(resources,R.drawable.caracc)
+            var builder = NotificationCompat.Builder(activity!!.applicationContext,"2222")
+                    .setSmallIcon(R.drawable.ic_caracc)
+                    .setContentTitle("차량충돌")
+                    .setContentText("충돌알람")
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setLargeIcon(bitmap)
+                    .setDefaults(
+                            Notification.DEFAULT_SOUND or Notification.DEFAULT_VIBRATE or
+                                    Notification.DEFAULT_LIGHTS)
+            val style = NotificationCompat.BigPictureStyle(builder)
+            style.bigPicture(bitmap)
+            builder.setStyle(style)
+            createNotiChannel(builder,"2222")
+
+        }
+    }
+    fun createNotiChannel(builder: NotificationCompat.Builder, id:String){
+        //낮은 버전의 사용자에 대한 설정
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val channel = NotificationChannel(id, "mynetworkchannel", NotificationManager.IMPORTANCE_HIGH)
+            val notificationManager = activity?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+            notificationManager.notify(Integer.parseInt(id),builder.build())
+        }else{
+            val notificationManager = activity?.getSystemService(Context.NOTIFICATION_SERVICE)as NotificationManager
+            notificationManager.notify(Integer.parseInt(id),builder.build())
+        }
     }
 
 
