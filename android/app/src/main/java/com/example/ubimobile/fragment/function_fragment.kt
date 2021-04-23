@@ -37,11 +37,9 @@ class function_fragment : Fragment {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-<<<<<<< HEAD:android/app/src/main/java/com/example/ubimobile/function_fragment.kt
-        mqttClient = MyMqtt(activity!!.applicationContext,"tcp://172.30.1.56:1883")
-=======
+
         mqttClient = MyMqtt(activity!!.applicationContext, "tcp://192.168.0.202:1883")
->>>>>>> 85fc60ab7a595d4fed99e48d6437067c3113867a:android/app/src/main/java/com/example/ubimobile/fragment/function_fragment.kt
+
         try {
             mqttClient.setCallback(::onReceived)
             mqttClient.connect(arrayOf<String>("iot/#"))
@@ -115,27 +113,18 @@ class function_fragment : Fragment {
             }
             publish(data)
         }
-<<<<<<< HEAD:android/app/src/main/java/com/example/ubimobile/function_fragment.kt
-        switch1.setOnClickListener{
-            var data:String = ""
-            if(switch1.isChecked){
-                data = "pulse_on"
-            }else{
-=======
+
         switch1.setOnClickListener {//맥박센서퍼블리쉬
             var data: String = ""
             if (switch1.isChecked) {
                 data = "pulse_on"
             } else {
->>>>>>> 85fc60ab7a595d4fed99e48d6437067c3113867a:android/app/src/main/java/com/example/ubimobile/fragment/function_fragment.kt
+
                 data = "pulse_off"
             }
             publish(data)
         }
-<<<<<<< HEAD
-<<<<<<< HEAD:android/app/src/main/java/com/example/ubimobile/function_fragment.kt
-=======
-=======
+
         switch2.setOnClickListener {//충격센서
             var data: String = ""
             if (switch2.isChecked) {
@@ -145,7 +134,7 @@ class function_fragment : Fragment {
             }
             publish(data)
         }
->>>>>>> 0c79d8427988434cc7ed30312bc0a88b9351fc47
+
         headlight.setOnClickListener {
             var data: String = ""
             if (text_headlight.currentTextColor == Color.parseColor("#FFFFFF")) {
@@ -157,6 +146,6 @@ class function_fragment : Fragment {
             }
             publish(data)
         }
->>>>>>> 85fc60ab7a595d4fed99e48d6437067c3113867a:android/app/src/main/java/com/example/ubimobile/fragment/function_fragment.kt
+
     }
 }
