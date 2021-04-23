@@ -2,63 +2,75 @@
 
 #### 프로젝트 개요
 
-* 자율주행 자동차 프로젝트
+- 자율주행 자동차 프로젝트
+  - 자동차와 IT의 융합이 가속화 되면서 운전자의 안전과 편의성이 향상된 스마트카가 속속 개발되고 있다. 최근의 스마트카는 IoT기술을 적용하여 자동차의 안정성을 극대화하면서 운전자의 편의성을 추구 할 수 있는 자동차의 패러다임을 변화시킬수 있는 기술을 적용하고 있다. 이러한 흐름에 맞춰 다양한 기능을 추가해 모델링한 UbiMobile을 통해 자율주행에 접근한다.
 
 
 
 #### 주요 기능
 
-* 차선,신호등 인식하여 자율주행(영상처리)
-* 문열고닫기(서보모터)
-* 차량간격제어(초음파센서)
-* 졸음운전방지(핸들쪽에 맥박센서 달아서)
-* 차량 이동구간 확인 - (GPS) -2안 OR 대체안찾기
-* 충격감지시스템-발생시 핸드폰으로 알림 전송(충격감지센서)
-* 빈 주차공간 찾기
-  - 주차패드위 압력패드
-  - 
-* 차량관리내용(주행km,차량정비날짜 등등)
+- 차선 인식하여 자율주행(영상처리)
 
-#### 세부 기능
+- 차량 간격 제어(초음파센서)
 
-* 
+- 충격 감지 시스템(충격감지센서)
 
+  - 발생 시 핸드폰으로 알림 전송
 
+- 졸음 운전 방지(맥박센서)
 
-#### 데이터베이스 ERD
+  - 핸들쪽에 맥박센서 설치 - 심박 수 일정수치 이하 부저 소리나게
 
+- 차량 문 제어(서보모터)
 
+- 주차관리(압력패드) - 주차패드 위 압력패드 - 라인트레이서 연결
 
+  
 
+- 미구현 
+
+  - 신호등 인식하여 자율주행
+  - 차량 이동구간 확인(GPS)
+  - 차량 관리 내용(주행km, 차량정비날짜 등)
 
 
 
 #### 개발 환경
 
-* 라즈베리파이 (https://www.raspberrypi.org/)
-  * Raspberry Pi OS with desktop and recommended software / Kernel version: 5.10
-* 아두이노 (https://www.arduino.cc/))
-  *  Version : Arduino IDE 1.8.13
-* 안드로이드 스튜디오 (https://developer.android.com/studio?hl=ko)
-  * Version : 4.1.1
-* 코틀린
-* 파이참 (https://www.jetbrains.com/pycharm/)
-  * Community Version
-* 파이썬
-  * Version : 3.6.4
-* mysql
-* MongoDB (https://www.mongodb.com/)
-  * Version : 2.6.4 / windows_x86_64 x64
+- 라즈베리파이 (https://www.raspberrypi.org/)
+  - Raspberry Pi OS with desktop and recommended software / Kernel version: 5.10
+- 아두이노 (https://www.arduino.cc/)
+  - Arduino IDE 1.8.13
+- 안드로이드 스튜디오 (https://developer.android.com/studio?hl=ko)
+  - 4.1.1
+
+- 파이썬
+  - 3.6.4
+
+- 파이참 (https://www.jetbrains.com/pycharm/)
+  - Community Version
+- MongoDB (https://www.mongodb.com/)
+  - windows_x86_64 x64
 
 
 
-#### 필요장비
+#### 사용장비
 
-* 압력센서
-* 맥박센서
-* 진동센서
-* 시프트 레지스터 74HC165
-* DIP 스위치
+- 압력센서(http://www.11st.co.kr/products/3126172027) 9,900*2
+- 맥박센서(https://www.devicemart.co.kr/goods/view?no=12319052) 4,000*1
+- 진동센서(https://www.devicemart.co.kr/goods/view?no=1278061) 1,200*1
+- 시프트 레지스터 74HC165([https://www.devicemart.co.kr/goods/view?no=11980](https://www.devicemart.co.kr/goods/view?no=11980#goods_qna)) 220*4
+- DIP 스위치(https://www.devicemart.co.kr/goods/view?no=1781) 480*3
+- 라즈베리파이 카메라
+- 서보모터*2
+- 초음파센서
+- 주행장(차선, 신호등)
+
+
+
+#### ERD
+
+수정 후 올리기
 
 
 
@@ -84,4 +96,5 @@
 박수민 [**soomin98**](https://github.com/soomin98)
 
 배경륜 [**bicycle92**](https://github.com/bicycle92)
+
 
