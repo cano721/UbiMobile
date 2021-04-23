@@ -18,9 +18,42 @@ def joinpage(request):
     return render(request,'login/joinpage.html')
 
 def loginimpl(request):
-    print("web...")
     id = request.POST['id']
     pwd = request.POST['pwd']
+    try:
+        usered = Users.objects.get(u_id=id)
+        parking_floor = Parking_floor.objects.filter(u_id=id)
+        if pwd == usered.u_pwd:
+            request.session['suser'] = id
+            if parking_floor:
+                pass
+            else:
+                parking_floor = ""
+            context = {
+                'users' : usered,
+                'login' : 'success',
+                'parking_floor' : parking_floor
+            }
+        else:
+            raise Exception
+    except:
+        context = {
+            'login' : 'fail'
+        }
+
+        return render(request,'login/loginpage.html',context)
+    return render(request,'park/parkpage.html',context)
+
+def joinimpl(request):
+    id = request.POST['id']
+    pwd = request.POST['pwd']
+    name = request.POST['name']
+    year = request.POST['year']
+    month = request.POST['month']
+    day = request.POST['day']
+    name = request.POST['day']
+    name = request.POST['day']
+
     try:
         usered = Users.objects.get(u_id=id)
         parking_floor = Parking_floor.objects.filter(u_id=id)
@@ -45,7 +78,6 @@ def loginimpl(request):
 
         return render(request,'login/loginpage.html',context)
     return render(request,'park/parkpage.html',context)
-
 
 def loginAndroid(request):
     if request.method == 'POST': # 안드로이드에서 post방식으로 보내오면
