@@ -20,5 +20,6 @@ class setting_fragment : Fragment {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var u_id = arguments?.getString("u_id")
     }
 }

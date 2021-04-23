@@ -22,6 +22,7 @@ urlpatterns = [
     path('loginpage',views.loginpage, name='loginpage'),
     path('joinpage',views.joinpage, name='joinpage'),
     path('loginimpl',views.loginimpl, name='loginimpl'),
+    path('joinimpl',views.joinimpl, name='joinimpl'),
     path('loginAndroid',views.loginAndroid, name='loginAndroid'),
     path('loginParkingAndroid',views.loginParkingAndroid, name='loginParkingAndroid'),
 ]

@@ -7,13 +7,16 @@
     <style>
 body{background-color:#F5F5F5;} * {margin:0; padding:0;}
 
-div{width:460px; margin:30px auto;}
+div{width:500px; margin:30px auto;}
 
 li{list-style:none; margin:15px 0;}
 
 input,select {height:50px;}
-select#month{width:172px; height:54px;}
-label{line-height:30px; font-size:15px; font-weight:bold;}
+input#year{width:162px; height:54px;}
+select#month{margin: 0 2px; width:162px; height:54px;}
+input#day{width:162px; height:54px;}
+select#gender{width:500px;}
+label{line-height:30px; font-size:15px;width:500px; font-weight:bold;}
 button{
     font-size:15px;
     cursor:pointer;
@@ -24,7 +27,7 @@ button{
     width:490px;
     height:70px;
     float: center;}
-#sex{width:490px;}
+#sex{width:500px;}
 
 
     </style>
@@ -54,23 +57,23 @@ button{
   </head>
 <body>
     <div>
-        <form>
+        <form >
             <ul>
                 <li>
-                    <label>아이디<br><input type="text" id="id" size="60" required></label>
+                    <label>아이디<br><input type="text" id="id" name="id" size="60" required></label>
                 </li>
                 <li>
-                    <label>비밀번호<br><input type="password" id="pwd" size="60" required></label>
+                    <label>비밀번호<br><input type="password" id="pwd" name="pwd" size="60" required></label>
                 </li>
                 <li>
                     <label>비밀번호확인<br><input type="password" id="pwd2" size="60" required></label>
                 </li>
                 <li>
-                    <label>이름<br> <input type="text" id="name" size="60" required></label>
+                    <label>이름<br> <input type="text" id="name" name="name" size="60" required></label>
                 </li>
-                <li>
-                    <label>생년월일<br> <input type="text" id="year" size="15" placeholder="년" required>
-                    <select id="month">
+                <li id="ageData">
+                    <label>생년월일<br> <input type="text" id="year" name="year" size="15" placeholder="년" required>
+                    <select id="month" name="month">
                         <option value="0">1월</option>
                         <option value="0">2월</option>
                         <option value="0">3월</option>
@@ -84,12 +87,11 @@ button{
                         <option value="0">11월</option>
                         <option value="0">12월</option>
                     </select>
-                    <input type="text" id="day" size="15" placeholder="일" required>
+                    <input type="text" id="day" size="15" name="day" placeholder="일" required>
                     </label>
                 </li>
                 <li>
-                    <label>성별<br><select id="sex">
-                        <option value="select">성별</option>
+                    <label>성별<br><select id="gender" name="gender">
                         <option value="m">남자</option>
                         <option value="w">여자</option>
                         </select>
@@ -97,7 +99,7 @@ button{
                 </li>
                 <li>
                     <label>본인 확인 이메일<small>선택입력</small><br>
-                        <input type="email" id="e-mail" size="60" placeholder="e-mail">
+                        <input type="email" id="e-mail" name="emial" size="60" placeholder="e-mail">
                     </label>
                 </li>
 
