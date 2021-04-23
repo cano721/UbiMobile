@@ -3,7 +3,7 @@ import paho.mqtt.client as mqtt
 import time
 import RPi.GPIO as GPIO
 
-buzzer = 13
+buzzer = 19
 TRIGER = 24
 ECHO = 21
 

@@ -9,6 +9,7 @@ import paho.mqtt.client as mqtt
 delay = 1
 # MCP3008 채널 중 센서에 연결한 채널 설정
 pot_channel = 0
+pot_channel2 = 1
 # SPI 인스턴스 spi 생성
 spi = spidev.SpiDev()
 # SPI 통신 시작하기
@@ -21,7 +22,6 @@ class Pressure(Thread):
         super(Pressure, self).__init__()
         self.client = client
         self.client.connect("192.168.0.202", 1883, 60)
-        self.client.loop_forever()
 
     def readadc(self,adcnum):
         if adcnum < 0 or adcnum > 7:
@@ -32,8 +32,10 @@ class Pressure(Thread):
 
     def run(self):
         parking = 0
+        parking2 = 0
         while True:
             pot_value = self.readadc(pot_channel)
+            pot_value2 = self.readadc(pot_channel2)
             if parking ==1:
                 if pot_value < 10:
                     self.client.publish("mydata/park", "1,0")
@@ -42,6 +44,15 @@ class Pressure(Thread):
                 if pot_value > 100:
                     self.client.publish("mydata/park", "1,1")
                     parking = 1
+
+            if parking2 ==1:
+                if pot_value2 < 10:
+                    self.client.publish("mydata/park", "2,0")
+                    parking2 = 0
+            else:
+                if pot_value2 > 100:
+                    self.client.publish("mydata/park", "2,1")
+                    parking2 = 1
 
 
 if __name__ == "__main__":

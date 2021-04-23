@@ -11,8 +11,11 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.example.ubimobile.ParkData
 import com.example.ubimobile.R
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.parking_main.*
+import okhttp3.*
 import org.json.JSONArray
+import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
@@ -32,10 +35,7 @@ class Parking_fragment : Fragment {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("msg","번들뽑아오기")
-        var pf_id = arguments?.getString("pf_id")
-        var pf_data = arguments?.getString("pf_data")
-        Log.d("msg","${pf_id},${pf_data}")
+        var u_id = arguments?.getString("u_id")
 
 
 //        handler = object : Handler(Looper.myLooper()!!){
@@ -49,52 +49,57 @@ class Parking_fragment : Fragment {
 //            }
 //        }
         firstFloor.setOnClickListener {
-            Log.d("http","버튼클릭....")
             // 압력신호에서 데이터를 받으면 park 없으면 line으로 변경
             thread{
-                Log.d("http","쓰레드진입....")
-                val site = "http://192.168.0.202:8000/parkpage?{$id}"
-                val url = URL(site)
-                val con = url.openConnection() as HttpURLConnection
-
-                val isr = InputStreamReader(con.inputStream,"UTF-8")
-                val br = BufferedReader(isr)
-
-                var str:String?
-                var buf = StringBuffer()
-                Log.d("http","웹서버 연결....")
-                do {
-                    str = br.readLine() //버퍼에 있는 모든 내용을 읽어오기 - 한 라인씩 읽기
-                    Log.d("http","버퍼내용읽기....")
-                    if (str != null) {
-                        buf.append(str)
-                    }
-                }while (str!=null) //네트워크로 전송되는 데이터를 읽어서 StringBuffer에 저장하기
-                val data = buf.toString()
-                Log.d("http","스트링변환....")
-                Log.d("http", "{$data}....")
-                val root = JSONArray(data)
-                Log.d("http","데이터저장....")
+                var jsonobj = JSONObject()
+                jsonobj.put("id",u_id)
+                val site = "http://192.168.0.202:8000/loginParkingAndroid"
+                val json:String =jsonobj.toString()
+                //접속하기위한 객체를 생성
+                val client = OkHttpClient()
+                //Request 정보를 담은 Request객체 만들기
+                val request: Request = Request.Builder()
+                        .url(site)
+                        .post(RequestBody.create(MediaType.parse("application/json"),json))
+                        .build()
+                //요청하기
+                val response: Response = client.newCall(request).execute()
+                val result = response.body()!!.string() //response의 body를 추출
+                val root = JSONArray(result)
                 for(i in 0 until root.length()){
                     //i번째 JSONObject를 추출해서 BoardData로 변환
                     var jsonobj = root.getJSONObject(i)
                     var dto = ParkData(jsonobj.getInt("pf_id"),
                             jsonobj.getInt("p_id"),jsonobj.getInt("pf_floor"),
                             jsonobj.getInt("pf_space"),jsonobj.getInt("pf_data"))
-                    Log.d("http","데이터객체로변환....")
-//                    activity!!.runOnUiThread {
-//                        for(i in 1..6){
-//                            var resid = resources.getIdentifier("parkImg"+i+1,"id",
-//                                    activity?.applicationContext?.packageName)
-//                            if(pf_id == i){
-//                                if(pf_data == 1){
-//                                    view.findViewById<ImageView>(resid).setImageResource(R.drawable.park1)
-//                                }else{
-//                                    view.findViewById<ImageView>(resid).setImageResource(R.drawable.line1)
-//                                }
-//                        }
-//                        }
-//                    }
+                    activity!!.runOnUiThread {
+                        for(i in 1..3){
+                            var resid = resources.getIdentifier("parkImg"+i,"id",
+                                    activity?.applicationContext?.packageName)
+                            if(dto.pf_floor == 1){
+                                if(dto.pf_space == i) {
+                                    if (dto.pf_data == 1) {
+                                        view.findViewById<ImageView>(resid).setImageResource(R.drawable.park1)
+                                    } else {
+                                        view.findViewById<ImageView>(resid).setImageResource(R.drawable.line1)
+                                    }
+                                }
+                        }
+                        }
+                        for(i in 4..6){
+                            var resid = resources.getIdentifier("parkImg"+i,"id",
+                                    activity?.applicationContext?.packageName)
+                            if(dto.pf_floor == 1){
+                                if(dto.pf_space == i) {
+                                    if (dto.pf_data == 1) {
+                                        view.findViewById<ImageView>(resid).setImageResource(R.drawable.park2)
+                                    } else {
+                                        view.findViewById<ImageView>(resid).setImageResource(R.drawable.line2)
+                                    }
+                                }
+                            }
+                        }
+                    }
 
                 }
             }
@@ -105,12 +110,59 @@ class Parking_fragment : Fragment {
             // 압력신호에서 데이터 받으면 park 없으면 line로 변경
             firstFloor.setTextColor(Color.parseColor("#FFFFFF"))
             secondFloor.setTextColor(Color.parseColor("#EC6C3D"))
-            parkImg1.setImageResource(R.drawable.park1)
-            parkImg2.setImageResource(R.drawable.park1)
-            parkImg3.setImageResource(R.drawable.park1)
-            parkImg4.setImageResource(R.drawable.park2)
-            parkImg5.setImageResource(R.drawable.park2)
-            parkImg6.setImageResource(R.drawable.park2)
+            thread{
+                var jsonobj = JSONObject()
+                jsonobj.put("id",u_id)
+                val site = "http://192.168.0.202:8000/loginParkingAndroid"
+                val json:String =jsonobj.toString()
+                //접속하기위한 객체를 생성
+                val client = OkHttpClient()
+                //Request 정보를 담은 Request객체 만들기
+                val request: Request = Request.Builder()
+                        .url(site)
+                        .post(RequestBody.create(MediaType.parse("application/json"),json))
+                        .build()
+                //요청하기
+                val response: Response = client.newCall(request).execute()
+                val result = response.body()!!.string() //response의 body를 추출
+                val root = JSONArray(result)
+                for(i in 0 until root.length()){
+                    //i번째 JSONObject를 추출해서 BoardData로 변환
+                    var jsonobj = root.getJSONObject(i)
+                    var dto = ParkData(jsonobj.getInt("pf_id"),
+                            jsonobj.getInt("p_id"),jsonobj.getInt("pf_floor"),
+                            jsonobj.getInt("pf_space"),jsonobj.getInt("pf_data"))
+                    activity!!.runOnUiThread {
+                        for(i in 7..9){
+                            var resid = resources.getIdentifier("parkImg"+(i-6),"id",
+                                    activity?.applicationContext?.packageName)
+                            if(dto.pf_floor == 2){
+                                if(dto.pf_space == i-6) {
+                                    if (dto.pf_data == 1) {
+                                        view.findViewById<ImageView>(resid).setImageResource(R.drawable.park1)
+                                    } else {
+                                        view.findViewById<ImageView>(resid).setImageResource(R.drawable.line1)
+                                    }
+                                }
+                            }
+                        }
+                        for(i in 10..12){
+                            var resid = resources.getIdentifier("parkImg"+(i-6),"id",
+                                    activity?.applicationContext?.packageName)
+                            if(dto.pf_floor == 2){
+                                if(dto.pf_space == i-6) {
+                                    if (dto.pf_data == 1) {
+                                        view.findViewById<ImageView>(resid).setImageResource(R.drawable.park2)
+                                    } else {
+                                        view.findViewById<ImageView>(resid).setImageResource(R.drawable.line2)
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
         }
     }
 }

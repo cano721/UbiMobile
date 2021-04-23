@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.ubimobile.classdata.ParkingFloor
+import com.example.ubimobile.classdata.User_Parcelable
 import com.example.ubimobile.fragment.*
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main.*
@@ -29,10 +30,9 @@ class MainActivity : FragmentActivity(){
         setContentView(R.layout.activity_main)
         Log.d("msg","메인진입")
         var objintent = intent
-        var obj = objintent.getParcelableExtra<ParkingFloor>("myobj")
-        var pf_id = obj?.pf_id
-        var pf_data = obj?.pf_data
-        Log.d("msg","인텐트뽑아오기$pf_id,$pf_data")
+        var obj = objintent.getParcelableExtra<User_Parcelable>("myobj")
+        var u_id = obj?.u_id
+        Log.d("msg","인텐트뽑아오기$u_id")
 //        val driving_tab = findViewById<TabItem>(R.id.driving_tab)
 //        val function_tab = findViewById<TabItem>(R.id.function_tab)
 //        val car_setting_tab = findViewById<TabItem>(R.id.car_setting_tab)
@@ -47,10 +47,9 @@ class MainActivity : FragmentActivity(){
         fragmentList.add(more_view)
         Log.d("msg","번들만들기")
         var bundle = Bundle()
-        bundle.putString("pf_id",pf_id)
-        bundle.putString("pf_data",pf_data)
+        bundle.putString("u_id",u_id)
         parking_view.arguments = bundle
-        Log.d("msg","번들만들기완료")
+        Log.d("msg","번들만들기완료${parking_view.arguments}")
 
 //        fragmentList.add(driving_view)
 //        fragmentList.add(driving_view)

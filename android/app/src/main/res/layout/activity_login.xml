@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/gradient"
-    tools:context=".ui.login.LoginActivity">
+    tools:context=".LoginActivity">
 
     <ImageView
         android:background="@drawable/logo"
@@ -57,6 +57,7 @@
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="64dp"
         android:textColor="@color/white"
+        android:background="#00ff0000"
         android:enabled="true"
         android:text="@string/action_sign_in_disable" />
 

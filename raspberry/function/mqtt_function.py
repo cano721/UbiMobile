@@ -3,8 +3,8 @@ import spidev
 import paho.mqtt.client as mqtt
 import RPi.GPIO as GPIO
 from threading import Thread
-#import WaveSensorTest
-#import pulsesensorTest
+import WaveSensorTest
+import pulsesensorTest
 
 sensors = [
     # Sensor(5, (3, 10), 'iot/user1/temp'),
@@ -13,7 +13,7 @@ sensors = [
     # Sensor(12, (0, 1), 'iot/user1/dust'),
 ]
 LED = 26
-buzzer = 13
+buzzer = 19
 servoPin = 12
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(buzzer, GPIO.OUT, initial=GPIO.LOW)
@@ -53,9 +53,6 @@ class Shocksensor(Thread):
                 self.value = 'shocked'
                 print("shocked!")
                 print("POT value: %d" % self.pot_value)
-                #client = mqtt.Client()
-                #client.connect("192.168.0.202", 1883, 60)
-                #client.publish("mydata/shock", "1")
                 time.sleep(1)
                 self.client.publish("iot/shock", self.value)
 
@@ -73,10 +70,10 @@ class MyMqtt_Sub():
         client.on_connect = self.on_connect
         client.on_message = self.on_message
         client.connect("192.168.0.202", 1883, 60)
-        #wave = WaveSensorTest.Wave(client, "")
-        #self.pulse = pulsesensorTest.PulseSensorTest(client,"")
-        #wave.start()
-        #servo.start(0)
+        wave = WaveSensorTest.Wave(client, "")
+        self.pulse = pulsesensorTest.PulseSensorTest(client,"")
+        wave.start()
+        servo.start(0)
 
         client.loop_forever()
 
@@ -105,7 +102,7 @@ class MyMqtt_Sub():
         elif myval=="pulse_on":
             self.pulse.start()
         elif myval=="pulse_off":
-            self.pulse.stop()
+            self.pulse.data = "stop"
         elif myval=="LED_ON":
             GPIO.output(LED, True)
         elif myval == "LED_OFF":
@@ -126,5 +123,5 @@ if __name__ == "__main__":
 
     except KeyboardInterrupt:
         print("종료")
-        #servo.stop()
+        servo.stop()
         GPIO.cleanup()
