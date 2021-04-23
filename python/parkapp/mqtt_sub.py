@@ -23,9 +23,13 @@ class MyMqtt(Thread):
 
     def on_message(self, client, userdata, msg):
         myval = msg.payload.decode("utf-8")
-        data = list[myval.split(",")]
+        print(myval)
+        data = list(myval.split(","))
+        print(data)
         from parkapp.models import Parking_floor
-        # Parking_floor.objects.put(int(data[1]),pf_id=int(data[0]))
+        obj = Parking_floor.objects.get(pf_id=int(data[0]))
+        obj.pf_data = int(data[1])
+        obj.save()
 
 
 class Parksub(AppConfig):
@@ -33,6 +37,7 @@ class Parksub(AppConfig):
     verbose_name = "My App"
 
     def ready(self):
+        print("작업시작")
         client = mqtt.Client()
         mymqtt = MyMqtt(client)
         mymqtt.start()
