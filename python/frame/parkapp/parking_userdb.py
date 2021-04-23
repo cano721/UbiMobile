@@ -24,6 +24,25 @@ class ParkDb(Db):
         super().close(conn,cursor);
         return all;
 
+    def update(self):
+        client = mqtt.Client()
+        client.on_connect = self.on_connect
+        client.on_message = self.on_message
+        client.connect("192.168.0.202", 1883, 60)
+        if rc == 0:
+            client.subscribe("mydata/function")
+        else:
+            print("연결실패")
+        conn = super().getConnection();
+        cursor = conn.cursor();
+        cursor.execute(Sql.parking_floor_select);
+        result = cursor.fetchall();
+        all = [];
+        for u in result:
+            parking_floor = Parking_floor(u[0], u[1], u[2], u[3]);
+            all.append(parking_floor);
+        super().close(conn, cursor);
+        return all;
 
 
 

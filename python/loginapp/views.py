@@ -1,8 +1,6 @@
 from django.shortcuts import render
 
 # Create your views here.
-from frame.loginapp.login_userdb import UsersDb
-from frame.parkapp.parking_userdb import ParkDb
 
 
 def loginpage(request):
@@ -15,10 +13,9 @@ def joinpage(request):
 def loginimpl(request):
     id = request.POST['id']
     pwd = request.POST['pwd']
-    context = { }
     try:
-        users = UsersDb().selectid(id)
-        parking_floor = ParkDb().select()
+        users = Users.objects.get(u_id,id)
+        parking_floor = Parking_floor.objects.get()
         if pwd == users.u_pwd:
             request.session['suser'] = id
             context = {
