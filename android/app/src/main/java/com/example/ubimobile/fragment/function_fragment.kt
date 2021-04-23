@@ -90,6 +90,15 @@ class function_fragment : Fragment {
             }
             publish(data)
         }
+        switch2.setOnClickListener {//충격센서
+            var data: String = ""
+            if (switch2.isChecked) {
+                data = "shock_on"
+            } else {
+                data = "shock_off"
+            }
+            publish(data)
+        }
         headlight.setOnClickListener {
             var data: String = ""
             if (text_headlight.currentTextColor == Color.parseColor("#FFFFFF")) {
