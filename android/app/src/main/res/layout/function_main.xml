@@ -44,7 +44,7 @@
             android:textColor="@color/white" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/text_headlight"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
@@ -79,7 +79,7 @@
             android:background="@android:color/transparent"/>
 
         <ImageButton
-            android:id="@+id/imageButton5"
+            android:id="@+id/headlight"
             android:layout_width="70dp"
             android:layout_height="60dp"
             android:layout_weight="1"

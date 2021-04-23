@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/jqx.base.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap-switch.min.css') }}" type="text/css">
+
+<style type="text/css">
+    .gauge{ background-color: #333; width:150px; height:150px;}
+    .switch{background-color: #833;}
+    /* body{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    } */
+</style>
+
+<script type="text/javascript" src="{{ url_for('static', filename='bootstrap/jquery-2.1.0.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/jqxcore.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/jqxchart.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/jqxgauge.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/bootstrap-switch.js') }}"></script>
+<script type="text/javascript">
+    var h ={{hum}};
+    var t ={{temp}};
+    var d ={{distance}};
+    $(function(){
+        $('#t1').jqxGauge({
+            width : 150, height : 150,
+            min : -20,        max : 50,
+            ranges : [ {
+                startValue : -20, endValue : 0,    style : { fill : '#e2e2e2'}
+            }, {
+                startValue : 0, endValue : 10,
+                style : {fill : '#00ccff'},
+            }, {
+                startValue : 10, endValue : 25,
+                style : { fill : '#4cb848'},
+            }, {
+                startValue : 25,endValue : 35,
+                style : {fill : '#fad00b'},
+            }, {
+                startValue : 35,endValue : 50,
+                style : {fill : '#e53d37'},
+            } ],
+            labels : {position : 'outside'},
+            animationDuration : 500,
+            border : {visible : false},
+            caption : { value : "온도 : "+t+"°C"},
+            value : t
+        });
+
+        $('#hu1').jqxGauge({
+            width : 150, height : 150,     min : 0,    max : 100,
+            border : {    visible : false},
+            caption : {    value : "습도 : "+h+"%"},
+            value : h
+        });
+
+        $('#d1').jqxGauge({
+            width : 150, height : 150,     min : 0,    max : 100,
+            border : {    visible : false},
+            caption : {    value : "거리 : "+d+"cm"},
+            value : d
+        });
+
+        $('[type="checkbox"]').bootstrapSwitch();
+
+    });
+
+    $(document).ready(function(){
+        setInterval(
+            function(){
+                $.ajax({
+                    url: "http://192.168.200.182:8088/update", // 요청 할 주소
+                    async: true, // false 일 경우 동기 요청으로 변경
+                    type: 'GET' ,// GET, PUT
+                    dataType: 'text', // xml, json, script, html
+                    beforeSend: function(jqXHR) {},
+                    success: function(jqXHR) {
+                        data = JSON.parse(jqXHR);
+                        h = data.hum;
+                        t = data.temp;
+                        d = data.distance;
+                        //alert(t)
+                        $ ( "#hu1" ) .jqxGauge ( 'setValue' , h);
+                        $ ( "#t1" ) .jqxGauge ( 'setValue' , t);
+                        $ ( "#d1" ) .jqxGauge ( 'setValue' , d);
+                    }, // 요청 완료 시
+                    error: function(jqXHR) {}, // 요청 실패.
+                    complete: function(jqXHR) {} // 요청의 실패, 성공과 상관 없이 완료 될 경우 호출
+                });
+            },2000)
+    })
+</script>
+</head>
+<body onload="setting()">
+    <div>
+        <h1>창고관리<small>창고안의 재고를 관리하는 페이지</small></h1>
+        <div class="panel panel-default">
+            <div class="panel-heading">보안장치</div>
+            <div class="panel-body">
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary active">
+                        보안해제
+                        <input type="radio"    name="security" id="normal" value="normal" checked="checked">
+                    </label>
+                    <label class="btn btn-primary">
+                        영업종료
+                        <input type="radio"    value="endtime" name="security" id="sleep">
+                    </label>
+                    <label class="btn btn-primary">
+                        외출중 보안
+                        <input type="radio"    value="out" name="security" id="out">
+                    </label>
+                </div>
+            </div><!--  panel-body -->
+        </div><!--  panel -->
+    </div><!-- container -->
+
+
+    <div>
+        <div class="row">
+
+            <div class="col-md-6 col-lg-6 col-sm-6" >
+                <div class="panel panel-default">
+                    <div class="panel-heading">창고 - 본사창고</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6" style="padding-left:50pt">
+                            	 <div class="row">
+                                    <div class="col-md-12"><div id="hu1"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12"><div id="t1"></div></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12"><div id="d1"></div></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                            	<form name="myform"
+                            		action="http://192.168.200.182:8088/on" method="post">
+	                            	<div class="col-md-6 col-lg-6 col-sm-12 col-xs-6">
+	                               		<div class="form-group">
+	                                        <label for="chkL1" class=" control-label">조명</label> <input
+	                                            type="checkbox" id="chkL1" value="on" name="led"/>
+	                                    </div>
+	                                    <div class="form-group">
+	                                        <label for="chkAc" class=" control-label">냉방</label> <input
+	                                            type="checkbox" id="chkAc" value="AC" disabled="disabled" />
+	                                    </div>
+	                                    <div class="form-group">
+	                                        <label for="chkHT" class=" control-label">난방</label> <input
+	                                            type="checkbox" id="chkHT" value="HT" disabled="disabled"/>
+	                                    </div>
+	                                </div>
+	                                <input type="submit" value="설정하기"/>
+	                           </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

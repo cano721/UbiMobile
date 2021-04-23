@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".DriveCamFragment">
+    tools:context=".fragment.DriveCamFragment">
 
     <WebView
         android:id="@+id/web_view_cam"

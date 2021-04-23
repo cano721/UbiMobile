@@ -1,19 +1,15 @@
 package com.example.ubimobile
 
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.ubimobile.sensor.MyMqtt
+import com.example.ubimobile.classdata.ParkingFloor
+import com.example.ubimobile.fragment.*
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.function_main.*
-import org.eclipse.paho.client.mqttv3.MqttMessage
-import java.lang.Exception
 
 
 
@@ -31,15 +27,31 @@ class MainActivity : FragmentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Log.d("msg","메인진입")
+        var objintent = intent
+        var obj = objintent.getParcelableExtra<ParkingFloor>("myobj")
+        var pf_id = obj?.pf_id
+        var pf_data = obj?.pf_data
+        Log.d("msg","인텐트뽑아오기$pf_id,$pf_data")
 //        val driving_tab = findViewById<TabItem>(R.id.driving_tab)
 //        val function_tab = findViewById<TabItem>(R.id.function_tab)
 //        val car_setting_tab = findViewById<TabItem>(R.id.car_setting_tab)
 //        val parking_tab = findViewById<TabItem>(R.id.parking_tab)
+
+
+
         fragmentList.add(driving_view)
         fragmentList.add(function_view)
         fragmentList.add(setting_view)
         fragmentList.add(parking_view)
         fragmentList.add(more_view)
+        Log.d("msg","번들만들기")
+        var bundle = Bundle()
+        bundle.putString("pf_id",pf_id)
+        bundle.putString("pf_data",pf_data)
+        parking_view.arguments = bundle
+        Log.d("msg","번들만들기완료")
+
 //        fragmentList.add(driving_view)
 //        fragmentList.add(driving_view)
 //        fragmentList.add(driving_view)
