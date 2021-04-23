@@ -37,7 +37,9 @@ class function_fragment : Fragment {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         mqttClient = MyMqtt(activity!!.applicationContext, "tcp://192.168.0.202:1883")
+
         try {
             mqttClient.setCallback(::onReceived)
             mqttClient.connect(arrayOf<String>("iot/#"))
@@ -111,15 +113,18 @@ class function_fragment : Fragment {
             }
             publish(data)
         }
+
         switch1.setOnClickListener {//맥박센서퍼블리쉬
             var data: String = ""
             if (switch1.isChecked) {
                 data = "pulse_on"
             } else {
+
                 data = "pulse_off"
             }
             publish(data)
         }
+
         switch2.setOnClickListener {//충격센서
             var data: String = ""
             if (switch2.isChecked) {
@@ -129,6 +134,7 @@ class function_fragment : Fragment {
             }
             publish(data)
         }
+
         headlight.setOnClickListener {
             var data: String = ""
             if (text_headlight.currentTextColor == Color.parseColor("#FFFFFF")) {
@@ -140,5 +146,6 @@ class function_fragment : Fragment {
             }
             publish(data)
         }
+
     }
 }
