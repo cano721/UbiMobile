@@ -2,28 +2,21 @@ package com.example.ubimobile.fragment
 
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import com.example.ubimobile.ParkData
+import com.example.ubimobile.classdata.ParkData
 import com.example.ubimobile.R
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.parking_main.*
 import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
-import java.net.URL
 import kotlin.concurrent.thread
 
 class Parking_fragment : Fragment {
-    lateinit var handler: Handler
+//    lateinit var handler: Handler
     constructor(){
 
     }
@@ -53,7 +46,7 @@ class Parking_fragment : Fragment {
             thread{
                 var jsonobj = JSONObject()
                 jsonobj.put("id",u_id)
-                val site = "http://192.168.0.202:8000/loginParkingAndroid"
+                val site = "http://192.168.0.202:8000/ParkingAndroid"
                 val json:String =jsonobj.toString()
                 //접속하기위한 객체를 생성
                 val client = OkHttpClient()
@@ -69,9 +62,11 @@ class Parking_fragment : Fragment {
                 for(i in 0 until root.length()){
                     //i번째 JSONObject를 추출해서 BoardData로 변환
                     var jsonobj = root.getJSONObject(i)
-                    var dto = ParkData(jsonobj.getInt("pf_id"),
-                            jsonobj.getInt("p_id"),jsonobj.getInt("pf_floor"),
-                            jsonobj.getInt("pf_space"),jsonobj.getInt("pf_data"))
+                    var dto = ParkData(
+                        jsonobj.getInt("pf_id"),
+                        jsonobj.getInt("p_id"), jsonobj.getInt("pf_floor"),
+                        jsonobj.getInt("pf_space"), jsonobj.getInt("pf_data")
+                    )
                     activity!!.runOnUiThread {
                         for(i in 1..3){
                             var resid = resources.getIdentifier("parkImg"+i,"id",
@@ -113,7 +108,7 @@ class Parking_fragment : Fragment {
             thread{
                 var jsonobj = JSONObject()
                 jsonobj.put("id",u_id)
-                val site = "http://192.168.0.202:8000/loginParkingAndroid"
+                val site = "http://192.168.0.202:8000/ParkingAndroid"
                 val json:String =jsonobj.toString()
                 //접속하기위한 객체를 생성
                 val client = OkHttpClient()
@@ -129,9 +124,11 @@ class Parking_fragment : Fragment {
                 for(i in 0 until root.length()){
                     //i번째 JSONObject를 추출해서 BoardData로 변환
                     var jsonobj = root.getJSONObject(i)
-                    var dto = ParkData(jsonobj.getInt("pf_id"),
-                            jsonobj.getInt("p_id"),jsonobj.getInt("pf_floor"),
-                            jsonobj.getInt("pf_space"),jsonobj.getInt("pf_data"))
+                    var dto = ParkData(
+                        jsonobj.getInt("pf_id"),
+                        jsonobj.getInt("p_id"), jsonobj.getInt("pf_floor"),
+                        jsonobj.getInt("pf_space"), jsonobj.getInt("pf_data")
+                    )
                     activity!!.runOnUiThread {
                         for(i in 7..9){
                             var resid = resources.getIdentifier("parkImg"+(i-6),"id",

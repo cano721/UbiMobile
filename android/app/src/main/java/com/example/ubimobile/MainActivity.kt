@@ -32,7 +32,8 @@ class MainActivity : FragmentActivity(){
         var objintent = intent
         var obj = objintent.getParcelableExtra<User_Parcelable>("myobj")
         var u_id = obj?.u_id
-        Log.d("msg","인텐트뽑아오기$u_id")
+        var u_name = obj?.u_name
+        Log.d("msg","인텐트뽑아오기$u_id,$u_name")
 //        val driving_tab = findViewById<TabItem>(R.id.driving_tab)
 //        val function_tab = findViewById<TabItem>(R.id.function_tab)
 //        val car_setting_tab = findViewById<TabItem>(R.id.car_setting_tab)
@@ -48,6 +49,7 @@ class MainActivity : FragmentActivity(){
         Log.d("msg","번들만들기")
         var bundle = Bundle()
         bundle.putString("u_id",u_id)
+        bundle.putString("u_name",u_name)
         parking_view.arguments = bundle
         Log.d("msg","번들만들기완료${parking_view.arguments}")
 

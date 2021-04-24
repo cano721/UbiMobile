@@ -1,4 +1,4 @@
-package com.example.ubimobile
+package com.example.ubimobile.classdata
 
 import java.util.*
 

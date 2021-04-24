@@ -24,5 +24,6 @@ urlpatterns = [
     path('loginimpl',views.loginimpl, name='loginimpl'),
     path('joinimpl',views.joinimpl, name='joinimpl'),
     path('loginAndroid',views.loginAndroid, name='loginAndroid'),
-    path('loginParkingAndroid',views.loginParkingAndroid, name='loginParkingAndroid'),
+    path('UsersCarAndroid',views.UsersCarAndroid, name='UsersCarAndroid'),
+    path('ParkingAndroid',views.ParkingAndroid, name='ParkingAndroid'),
 ]
