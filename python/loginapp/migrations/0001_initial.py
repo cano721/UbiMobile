@@ -16,10 +16,11 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('u_id', models.CharField(db_column='u_id', max_length=20)),
-                ('u_nick', models.CharField(db_column='u_nick', max_length=10)),
+                ('u_gender', models.CharField(db_column='u_gender', max_length=10)),
                 ('u_pwd', models.CharField(db_column='u_pwd', max_length=20)),
                 ('u_name', models.CharField(db_column='u_name', max_length=20)),
                 ('u_age', models.IntegerField(db_column='u_age')),
+                ('u_email', models.CharField(db_column='u_email', max_length=50)),
             ],
             options={
                 'db_table': 'users',

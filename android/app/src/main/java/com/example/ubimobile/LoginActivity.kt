@@ -20,6 +20,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         login.setOnClickListener {
             var u_id = ""
+            var u_name = ""
             thread {
                 //EditText에 입력한 id와 pass로 json데이터를 만들기
                 var jsonobj = JSONObject()
@@ -27,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
                 jsonobj.put("password", password.text)
 
                 Log.d("msg", "Login접속${username.text}")
-                val site = "http://192.168.0.202:8000/loginAndroid"
+                val site = "http://192.168.0.2:8000/loginAndroid"
                 val json: String = jsonobj.toString()
                 //접속하기위한 객체를 생성
                 val client = OkHttpClient()
@@ -40,18 +41,18 @@ class LoginActivity : AppCompatActivity() {
                 //요청하기
                 val response: Response = client.newCall(request).execute()
                 val result = response.body()!!.string() //response의 body를 추출
-                Log.d("msg",result)
                 val root = JSONObject(result)
                 Log.d("msg", "추출전")
                 u_id = root.getString("u_id")
-                Log.d("msg", "추출변환${u_id}")
+                Log.d("msg", "추출변환${u_id},$u_name")
 
                 //인텐트를 생성
                 var objIntent = Intent(this, MainActivity::class.java)
                 var obj = User_Parcelable()
                 obj.u_id = u_id
+                obj.u_name = u_name
                 objIntent.putExtra("myobj", obj)
-                Log.d("msg", "intent전송${obj.u_id}")
+                Log.d("msg", "intent전송${obj.u_id},${obj.u_name}")
                 startActivity(objIntent)
                 Log.d("msg", "intent전송완료")
             }

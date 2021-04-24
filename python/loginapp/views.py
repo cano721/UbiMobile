@@ -5,9 +5,9 @@ from django.shortcuts import render
 from rest_framework.parsers import JSONParser
 
 from loginapp.models import Users
-from parkapp.models import Parking_floor
+from parkapp.models import Parking_floor, Users_car
 from loginapp.serializers import UsersSerializer
-from parkapp.serializers import Parking_floorSerializer
+from parkapp.serializers import Parking_floorSerializer, Users_carSerializer
 
 
 def loginpage(request):
@@ -94,7 +94,7 @@ def loginAndroid(request):
         else:
             return JsonResponse("fail",safe=False, json_dumps_params={'ensure_ascii':False})
 
-def loginParkingAndroid(request):
+def ParkingAndroid(request):
     if request.method == 'POST': # 안드로이드에서 post방식으로 보내오면
         data = JSONParser().parse(request) # json형태로 파서
         id = data['id'] #id라는 이름으로 보내진 값 추출
@@ -106,3 +106,14 @@ def loginParkingAndroid(request):
     else:
         return JsonResponse("fail",safe=False, json_dumps_params={'ensure_ascii':False})
 
+def UsersCarAndroid(request):
+    if request.method == 'POST': # 안드로이드에서 post방식으로 보내오면
+        data = JSONParser().parse(request) # json형태로 파서
+        id = data['id'] #id라는 이름으로 보내진 값 추출
+        users_car = Users_car.objects.filter(u_id=id) #id에 딸린 내용 가져오기
+        serializer = Users_carSerializer(users_car, many=True) #json형태로 만들기
+        print("장고에서 확인중...")
+        print(serializer.data)
+        return JsonResponse(serializer.data,safe=False, json_dumps_params={'ensure_ascii':False})
+    else:
+        return JsonResponse("fail",safe=False, json_dumps_params={'ensure_ascii':False})

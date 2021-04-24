@@ -7,13 +7,16 @@ import android.os.Parcelable
 //자동으로 메소드가 오버라이딩되고 생성자가 추가
 class User_Parcelable() : Parcelable {
     var u_id:String? = ""
+    var u_name:String? = ""
 
     constructor(parcel: Parcel) : this() {
         u_id = parcel.readString()
+        u_name = parcel.readString()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(u_id)
+        parcel.writeString(u_name)
     }
 
     override fun describeContents(): Int {
@@ -24,6 +27,7 @@ class User_Parcelable() : Parcelable {
         override fun createFromParcel(parcel: Parcel): User_Parcelable {
            val obj = User_Parcelable()
             obj.u_id = parcel.readString()
+            obj.u_name = parcel.readString()
             return obj
         }
 

@@ -1,5 +1,4 @@
 {% load static %}
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -12,9 +11,7 @@ div{width:500px; margin:30px auto;}
 li{list-style:none; margin:15px 0;}
 
 input,select {height:50px;}
-input#year{width:162px; height:54px;}
-select#month{margin: 0 2px; width:162px; height:54px;}
-input#day{width:162px; height:54px;}
+input#age{width:500px;}
 select#gender{width:500px;}
 label{line-height:30px; font-size:15px;width:500px; font-weight:bold;}
 button{
@@ -27,7 +24,6 @@ button{
     width:490px;
     height:70px;
     float: center;}
-#sex{width:500px;}
 
 
     </style>
@@ -71,24 +67,8 @@ button{
                 <li>
                     <label>이름<br> <input type="text" id="name" name="name" size="60" required></label>
                 </li>
-                <li id="ageData">
-                    <label>생년월일<br> <input type="text" id="year" name="year" size="15" placeholder="년" required>
-                    <select id="month" name="month">
-                        <option value="0">1월</option>
-                        <option value="0">2월</option>
-                        <option value="0">3월</option>
-                        <option value="0">4월</option>
-                        <option value="0">5월</option>
-                        <option value="0">6월</option>
-                        <option value="0">7월</option>
-                        <option value="0">8월</option>
-                        <option value="0">9월</option>
-                        <option value="0">10월</option>
-                        <option value="0">11월</option>
-                        <option value="0">12월</option>
-                    </select>
-                    <input type="text" id="day" size="15" name="day" placeholder="일" required>
-                    </label>
+                <li>
+                    <label>나이<br> <input type="number" id="age" name="age" size="3"  required></label>
                 </li>
                 <li>
                     <label>성별<br><select id="gender" name="gender">
