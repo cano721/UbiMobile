@@ -13,9 +13,22 @@ from parkapp.serializers import Parking_floorSerializer, Users_carSerializer
 def loginpage(request):
     return render(request,'login/loginpage.html')
 
+def testpage(request):
+
+    return render(request,'login/testpage.html')
+
+
 def joinpage(request):
 
     return render(request,'login/joinpage.html')
+
+def parkjoin(request):
+
+    return render(request,'login/parkjoin.html')
+def reservation(request):
+
+    return render(request,'login/reservation.html')
+
 
 def loginimpl(request):
     id = request.POST['id']

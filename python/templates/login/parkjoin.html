@@ -1,0 +1,346 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body{
+    margin: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: #483F37;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    padding: 8px 12px;
+}
+.loginText{
+    list-style: none;
+    display: flex;
+    align-items: right;
+    background-color: white;
+    padding: 8px 12px;
+}
+.loginText li:hover{
+    background-color: #C4C4C4;
+}
+
+.logo{
+    /* park bentley */
+    position: absolute;
+    width: 146px;
+    height: 79px;
+    left: 400px;
+    top: 88px;
+
+    font-family: "Red Rose";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 45px;
+
+    color: #999999;
+}
+
+
+.navbar_menu{
+   /* like 서비스 이용 */
+   display: flex;
+   list-style: none;
+   padding-left: 0;
+    /* padding-right: 10; */
+   position: absolute;
+   /* width: 117px;
+   height: 30px; */
+   left: 850px;
+   top: 106px;
+
+   font-family: "Red Rose";
+   font-style: normal;
+   font-weight: normal;
+   font-size: 24px;
+   line-height: 30px;
+   /* identical to box height */
+   color: #857E71;
+
+
+}
+.navbar_menu li{
+    padding: 8px 12px;
+
+}
+.navbar_menu ul {
+    list-style: none;
+    padding-left: 0;
+    border: none;
+    padding:0px;
+    margin:0px;
+}
+.navbar_menu li a{
+    margin:0px;
+    padding:0px 10px;
+    text-align:center;
+    text-decoration:none;
+}
+.loginText{
+    /* 로그인 회원가입 */
+    position: absolute;
+    width: 138px;
+    height: 22px;
+    left: 1259px;
+    top: 44px;
+    font-family:" Red Rose";
+    text-decoration:none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    list-style: none;
+    color: #EAD08C;
+}
+.loginText li{
+    padding-left: 0;
+    padding: 8px 12px;
+}
+.loginText li a{
+    margin:0px;
+    padding:0px 10px;
+    text-align:center;
+    text-decoration:none;
+}
+/*--------------*/
+.navbar_menu li a:hover, .navbar_menu ul li:hover a{
+    background: #C4C4C4;
+    color:#FFFFFF;
+    text-decoration:none;
+    }
+
+    .navbar_menu li ul{
+    background: #C4C4C4;
+    display:none;
+    height:auto;
+    border:0px;
+    position:absolute;
+    width:200px;
+    z-index:200;
+    }
+
+    .navbar_menu li:hover ul{
+    display:block;
+    }
+
+    .navbar_menu li li {
+    background: #C4C4C4;
+    display:block;
+    float:none;
+    margin:0px;
+    padding:0px;
+    width:200px;
+    }
+
+    .navbar_menu li:hover li a{
+    background:none;
+    }
+
+    .navbar_menu li ul a{
+    display:block;
+    height:30px;
+    margin:0px;
+    padding:0px 10px 0px 15px;
+    text-align:left;
+    }
+
+    .navbar_menu li ul a:hover, .navbar_menu li ul li:hover a{
+    background: rgb(171,171,171);
+    border:0px;
+    color:#ffffff;
+    text-decoration:none;
+    }
+
+    .navbar_menu p{
+    clear:left;
+    }
+
+.yellowBar{
+    /* Rectangle 3 */
+    position: absolute;
+    vertical-align: middle;
+    width: 65%;
+    height: 65px;
+    top: 185px;
+    background: #EAD08C;
+}
+.yellowBarText{
+    text-align: center;
+    vertical-align: middle;
+    font-family: "Red Rose";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 35px;
+
+    /* identical to box height */
+    color: #707070;
+}
+.roundYellowBox{
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    top: 315px;
+    margin-left: 0px;
+    vertical-align: middle;
+    background: #FFFFFF;
+    border: 3px solid #EAD08C;
+    border-radius: 58px;
+    padding: 20px;
+    font-weight: 800;
+    cursor: default;
+}
+.roundYellowBox .calendar-box {
+    vertical-align: middle;
+    text-align: center;
+    float: left;
+    width: 35%;
+    padding-right: 30px;
+    padding-top: 30px;
+  }
+.text {
+    margin-top: 40px;
+    margin-right: 250px;
+    font-size: 20px;
+}
+
+</style>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Knight - v2.2.1
+  * Template URL: https://bootstrapmade.com/knight-free-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container">
+
+      <!-- The main logo is shown in mobile version only. The centered nav-logo in nav menu is displayed in desktop view  -->
+      <div class="logo d-block d-lg-none">
+        <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul class="nav-inner">
+          <li class="active"><a href="https://github.com/cano721">계해범</a></li>
+          <li><a href="https://github.com/angriff1">목민수</a></li>
+          <li><a href="https://github.com/soomin98">박수민</a></li>
+          <li><a href="https://github.com/cano721/UbiMobile">배경륜</a></li>
+
+          <li class="nav-logo"><a href=""><img src="static/assets/img/logo.png" alt="" class="img-fluid"></a></li>
+          {% if 'suser' in request.session %}
+          <li><a href="{% url 'parkpage' %}">Park</a></li>
+          <li><a href="{% url 'adminpage' %}">Admin</a></li>
+          <li><a href="{% url 'loginpage' %}">login</a></li>
+          <li><a href="{% url 'joinpage' %}">register</a></li>
+          {% else %}
+          <li><a href="{% url 'loginpage' %}">Park</a></li>
+          <li><a href="{% url 'loginpage' %}">Admin</a></li>
+          <li><a href="{% url 'loginpage' %}">logout</a></li>
+          <li><a href="{% url 'joinpage' %}">register</a></li>
+          {% endif %}
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+</body>
+<body>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <section id="hero">
+    <div class="hero-container">
+        <div class=" logo">
+            <a href="testpage.html">UbiMobile</a>
+        </div>
+        <ul class="navbar_menu">
+            <li><a href="parkpage.html">주차장 현황</a>
+            </li>
+            <li><a href="parkjoin.html">주차장 등록</a>
+            </li>
+            <li><a href="">주차장 삭제</a>
+            </li>
+            <li><a href="">주차장 수정</a>
+            </li>
+        </ul>
+
+        <div class="yellowBar">
+        <p class="yellowBarText">주차장 등록</p>
+        </div>
+
+        <div class="roundYellowBox">
+            <div class="text">
+            <a>주차장 이름</a>
+        </div>
+        <div class="text">
+            <p>주차장 주소</p>
+        </div>
+        <div class="text">
+            <p>주차장 층수</p>
+        </div>
+        <div class="text">
+            <p>주차장 자리</p>
+        </div>
+        <div class="text">
+            <p>주차장 전체공간</p>
+        </div>
+        </div>
+    </div>
+
+    </section>
+
+  {% block content %}
+  {% endblock %}
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery-sticky/jquery.sticky.js' %}"></script>
+  <script src="{% static 'assets/vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+</html>
