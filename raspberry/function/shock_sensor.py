@@ -29,5 +29,5 @@ while True:
         print("POT value: %d" % pot_value)
         client = mqtt.Client()
         client.connect("192.168.0.202", 1883, 60)
-        client.publish("mydata/shock", "1")
+        client.publish("mydata/shock", "shock,1")
         time.sleep(1)

@@ -53,7 +53,7 @@ button{
   </head>
 <body>
     <div>
-        <form >
+        <form action="{% url 'joinimpl' %} " method="post" role="form">
             <ul>
                 <li>
                     <label>아이디<br><input type="text" id="id" name="id" size="60" required></label>
@@ -72,14 +72,14 @@ button{
                 </li>
                 <li>
                     <label>성별<br><select id="gender" name="gender">
-                        <option value="m">남자</option>
-                        <option value="w">여자</option>
+                        <option value="man">남자</option>
+                        <option value="woman">여자</option>
                         </select>
                     </label>
                 </li>
                 <li>
                     <label>본인 확인 이메일<small>선택입력</small><br>
-                        <input type="email" id="e-mail" name="emial" size="60" placeholder="e-mail">
+                        <input type="email" id="email" name="email" size="60" placeholder="e-mail">
                     </label>
                 </li>
 

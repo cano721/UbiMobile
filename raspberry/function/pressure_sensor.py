@@ -38,20 +38,20 @@ class Pressure(Thread):
             pot_value2 = self.readadc(pot_channel2)
             if parking ==1:
                 if pot_value < 10:
-                    self.client.publish("mydata/park", "1,0")
+                    self.client.publish("mydata/park", "park,1,0")
                     parking = 0
             else:
                 if pot_value > 100:
-                    self.client.publish("mydata/park", "1,1")
+                    self.client.publish("mydata/park", "park,1,1")
                     parking = 1
 
             if parking2 ==1:
                 if pot_value2 < 10:
-                    self.client.publish("mydata/park", "2,0")
+                    self.client.publish("mydata/park", "park,2,0")
                     parking2 = 0
             else:
                 if pot_value2 > 100:
-                    self.client.publish("mydata/park", "2,1")
+                    self.client.publish("mydata/park", "park,2,1")
                     parking2 = 1
 
 

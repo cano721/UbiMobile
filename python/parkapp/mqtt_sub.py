@@ -17,7 +17,7 @@ class MyMqtt(Thread):
     def on_connect(self, client, userdata, flags, rc):
         print("connect.." + str(rc))
         if rc == 0:
-            client.subscribe("mydata/park")
+            client.subscribe("mydata/#")
         else:
             print("연결실패")
 
@@ -26,10 +26,16 @@ class MyMqtt(Thread):
         print(myval)
         data = list(myval.split(","))
         print(data)
-        from parkapp.models import Parking_floor
-        obj = Parking_floor.objects.get(pf_id=int(data[0]))
-        obj.pf_data = int(data[1])
-        obj.save()
+        if data[0] == "park":
+            from parkapp.models import Parking_floor
+            obj = Parking_floor.objects.get(pf_id=int(data[1]))
+            obj.pf_data = int(data[2])
+            obj.save()
+        # if data[0] == "shock":
+        #     from parkapp.models import Parking_floor
+        #     obj = Parking_floor.objects.get(pf_id=int(data[1]))
+        #     obj.pf_data = int(data[2])
+        #     obj.save()
 
 
 class Parksub(AppConfig):

@@ -44,6 +44,7 @@ class LoginActivity : AppCompatActivity() {
                 val root = JSONObject(result)
                 Log.d("msg", "추출전")
                 u_id = root.getString("u_id")
+                u_name = root.getString("u_name")
                 Log.d("msg", "추출변환${u_id},$u_name")
 
                 //인텐트를 생성
