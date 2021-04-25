@@ -164,7 +164,7 @@ class PulseSensorTest(Thread):
                     self.value = 'pulse_error'
                     print("No Heartbeat found")
                 time.sleep(1)
-                self.client.publish("iot/pulse", self.value)
+                self.client.publish("iot/pulse", "pulse,%d" % self.value)
                 if self.data == "stop":
                     print("stop")
                     break

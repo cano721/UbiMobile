@@ -51,7 +51,9 @@ class MainActivity : FragmentActivity(){
         bundle.putString("u_id",u_id)
         bundle.putString("u_name",u_name)
         parking_view.arguments = bundle
-        Log.d("msg","번들만들기완료${parking_view.arguments}")
+        setting_view.arguments = bundle
+        Log.d("msg","파킹번들만들기완료${parking_view.arguments}")
+        Log.d("msg","세팅번들만들기완료${setting_view.arguments}")
 
 //        fragmentList.add(driving_view)
 //        fragmentList.add(driving_view)

@@ -48,35 +48,31 @@ def joinimpl(request):
     id = request.POST['id']
     pwd = request.POST['pwd']
     name = request.POST['name']
-    year = request.POST['year']
-    month = request.POST['month']
-    day = request.POST['day']
-    name = request.POST['day']
-    name = request.POST['day']
+    age = request.POST['age']
+    gender = request.POST['gender']
+    email = request.POST['email']
 
     try:
+        data = Users(u_id=id,u_gender=gender,u_pwd=pwd,u_name=name,u_age=age,u_email=email)
+        data.save()
         usered = Users.objects.get(u_id=id)
         parking_floor = Parking_floor.objects.filter(u_id=id)
-        if pwd == usered.u_pwd:
-            print("로그인성공")
-            request.session['suser'] = id
-            if parking_floor:
-                pass
-            else:
-                parking_floor = ""
-            context = {
-                'users' : usered,
-                'login' : 'success',
-                'parking_floor' : parking_floor
-            }
+        print("회원가입성공")
+        request.session['suser'] = id
+        if parking_floor:
+            pass
         else:
-            raise Exception
+            parking_floor = ""
+        context = {
+            'users' : usered,
+            'login' : 'success',
+            'parking_floor' : parking_floor
+        }
     except:
         context = {
             'login' : 'fail'
         }
-
-        return render(request,'login/loginpage.html',context)
+        return render(request,'login/joinpage.html',context)
     return render(request,'park/parkpage.html',context)
 
 def loginAndroid(request):

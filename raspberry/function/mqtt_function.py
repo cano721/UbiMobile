@@ -54,7 +54,10 @@ class Shocksensor(Thread):
                 print("shocked!")
                 print("POT value: %d" % self.pot_value)
                 time.sleep(1)
-                self.client.publish("iot/shock", self.value)
+                if pulsesensorTest.value:
+                    value2 = pulsesensorTest.value
+                    self.client.publish("iot/shock", "shock,1,%d" % value2)
+                self.client.publish("iot/shock", "shock,1,0")
 
             if str(self.cond) in "stop":
                 print("run종료")
@@ -112,7 +115,7 @@ class MyMqtt_Sub():
             self.shock.start()
         elif myval=="shock_off":
             self.shock.cond = "stop"
-            if self.shock.cond in "stop" :
+            if self.shock.cond in "stop":
                 print("test")
 
 
