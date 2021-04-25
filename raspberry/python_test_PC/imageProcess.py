@@ -35,7 +35,7 @@ def roi(image, vertices):
     mask = np.zeros_like(image)
 
     if len(image.shape) > 2:
-        channel_count = image.shape[2]  # i.e. 3 or 4 depending on your image
+        channel_count = image.shape[2]
         ignore_mask_color = (255,) * channel_count
     else:
         ignore_mask_color = 255
@@ -48,6 +48,164 @@ def roi(image, vertices):
 
     masked = cv2.bitwise_and(image, mask)
     return masked
+
+
+def inverse_slope(line):
+    if line[3] - line[1] < 1:
+        result = 999.
+    else:
+        result = (line[2] - line[0]) / (line[3] - line[1])
+    return result
+
+
+def get_roi_square(hsv_src, bin_src, show_src, start_height, end_height):
+    def get_points(target_area):
+        p1 = None
+        p2 = None
+        p3 = None
+        p4 = None
+        check_len = 5
+        for i in range(target_area[2] - target_area[0] - check_len):
+            if p1 is None:
+                if list(bin_src[target_area[1], (target_area[0] + i):(target_area[0] + i + check_len)]).count(0) < 3:
+                    p1 = target_area[0] + i
+            if p2 is None:
+                if list(bin_src[target_area[1], (target_area[2] - i - check_len):(target_area[2] - i)]).count(0) < 3:
+                    p2 = target_area[2] - i
+            if p3 is None:
+                if list(bin_src[target_area[3], (target_area[0] + i):(target_area[0] + i + check_len)]).count(0) < 3:
+                    p3 = target_area[0] + i
+            if p4 is None:
+                if list(bin_src[target_area[3], (target_area[2] - i - check_len):(target_area[2] - i)]).count(0) < 3:
+                    p4 = target_area[2] - i
+            if p1 is not None and p2 is not None and p3 is not None and p4 is not None:
+                return p1, p2, p3, p4
+        return None, None, None, None
+
+    ##################################################
+    height, width = show_src.shape[:2]
+    retval, labels, stats, centroids = cv2.connectedComponentsWithStats(hsv_src[start_height:end_height, :])
+    min_pixels = 500
+    area1 = [0, 0, 0, 0, 0]
+    area2 = [0, 0, 0, 0, 0]
+    area_left = [0, 0, 0, 0, 0]
+    area_right = [0, 0, 0, 0, 0]
+    area_one = [0, 0, 0, 0, 0]
+    # detected lines
+    NONE = 0
+    LEFT = 1
+    RIGHT = 2
+    BOTH = 3
+    thresh_inv_slope = 0.6
+    thresh_side_width = 100
+    
+    for i in range(1, retval):
+        (x, y, w, h, area) = stats[i]
+
+        # select two biggest areas
+        if area > min_pixels:
+            # adjust width and height
+            x = max(1, x - 5)
+            w = min(width - x - 1, w + 5)
+            if end_height == height:
+                h = h - 5
+            rectangle = [x, start_height + y, x + w, start_height + y + h, area]
+            if area1[4] == 0:
+                area1 = rectangle
+            elif area2[4] == 0:
+                area2 = rectangle
+            elif area > area1[4] or area > area2[4]:
+                if area1[4] < area2[4]:
+                    area1 = rectangle
+                else:
+                    area2 = rectangle
+
+    if area1[4] and area2[4]:
+        if area1[0] < area2[0]:
+            area_left = area1
+            area_right = area2
+        else:
+            area_left = area2
+            area_right = area1
+    elif area1[4]:
+        if start_height / height > 0.6:
+            if area1[2] < width // 2:
+                area_left = area1
+            else:
+                area_right = area1
+        else:
+            area_one = area1
+
+    # cv2.rectangle(show_src, (area_left[0], area_left[1]), (area_left[2], area_left[3]), (0, 0, 255))
+    # cv2.rectangle(show_src, (area_right[0], area_right[1]), (area_right[2], area_right[3]), (255, 0, 0))
+    # if area_one is not None:
+    #     cv2.rectangle(show_src, (area_one[0], area_one[1]), (area_one[2], area_one[3]), (255, 0, 255))
+
+    vertices = []
+    line = None
+    left_line = None
+    right_line = None
+    detected = NONE
+    if area_left[4]:
+        # x1, x2, x3, x4 = get_points(area_left)
+        x2, x1, x4, x3 = get_points(area_left)
+        if x1 is not None:
+            vertices1 = np.array([[(x1, area_left[1]), (x2, area_left[1]), (x4, area_left[3]), (x3, area_left[3])]], dtype=np.int32)
+            vertices.append(vertices1)
+
+            if x1 < 2 or x3 < 2:
+                left_line = [x2, area_left[1], x4, area_left[3]]
+            else:
+                left_line = [(x1 + x2) // 2, area_left[1], (x3 + x4) // 2, area_left[3]]
+
+            cv2.polylines(show_src, vertices1, True, (255, 0, 255), 1)
+            cv2.line(show_src, (left_line[0], left_line[1]), (left_line[2], left_line[3]), (0, 0, 255), 2)
+
+    if area_right[4]:
+        w1, w2, w3, w4 = get_points(area_right)
+        if w1 is not None:
+            vertices2 = np.array([[(w1, area_right[1]), (w2, area_right[1]), (w4, area_right[3]), (w3, area_right[3])]], dtype=np.int32)
+            vertices.append(vertices2)
+
+            if w2 > width - 3 or w4 > width - 3:
+                right_line = [w1, area_right[1], w3, area_right[3]]
+            else:
+                right_line = [(w1 + w2) // 2, area_right[1], (w3 + w4) // 2, area_right[3]]
+
+            cv2.polylines(show_src, vertices2, True, (255, 0, 255), 1)
+            cv2.line(show_src, (right_line[0], right_line[1]), (right_line[2], right_line[3]), (255, 0, 0), 2)
+
+    # decision line
+    if left_line is not None and right_line is not None:
+        line = [(left_line[0] + right_line[0]) // 2,
+                (left_line[1] + right_line[1]) // 2,
+                (left_line[2] + right_line[2]) // 2,
+                (left_line[3] + right_line[3]) // 2]
+        # line = [width // 2 + (left_line[0] + right_line[0] - left_line[2] - right_line[2]) // 2,
+        #         (left_line[1] + right_line[1]) // 2,
+        #         width // 2,
+        #         (left_line[3] + right_line[3]) // 2]
+        detected = BOTH
+
+    elif left_line is not None:
+        line = [width // 2 - int((inverse_slope(left_line) + thresh_inv_slope) * (end_height - start_height)),
+                start_height,
+                width // 2,
+                end_height]
+        detected = LEFT
+
+    elif right_line is not None:
+
+        line = [width // 2 - int((inverse_slope(right_line) - thresh_inv_slope) * (end_height - start_height)),
+                start_height,
+                width // 2,
+                end_height]
+        detected = RIGHT
+
+    if line is not None:
+        cv2.line(show_src, (line[2], line[3]), (line[0], line[1]), (0, 255, 255), 2)
+
+    return vertices, [detected, line]
 
 
 def imageProcess(img):
@@ -68,235 +226,61 @@ def imageProcess(img):
             cv2.setTrackbarPos("HighV", "Trackbar Windows", pixel_hsv[0][0][2] + 40)
 
     def hough(src):
-        lines = cv2.HoughLinesP(src, rho=2, theta=np.pi / 180.0, threshold=50, minLineLength=50, maxLineGap=20)
+        lines = cv2.HoughLinesP(src, rho=2, theta=np.pi / 180.0, threshold=50, minLineLength=20, maxLineGap=10)
         return lines
 
-    def drawLines(src, lines, color=(0, 0, 255), thickness=2):
-        if lines is not None:
-            for line in lines:
-                x1, y1, x2, y2 = line[0]
-                cv2.line(src, (x1, y1 + height // 2), (x2, y2 + height // 2), color, thickness)
-
-    def drawOneLine(src, lines, color=(0, 0, 255), thickness=5):
-        if lines is None or len(lines) == 0:
-            return
-        draw_right = True
-        draw_left = True
-
-        # Find slopes of all lines
-        # But only care about lines where abs(slope) > slope_threshold
-        slope_threshold = 0.1
-        slopes = []
-        new_lines = []
-        for line in lines:
-            x1, y1, x2, y2 = line[0]  # line = [[x1, y1, x2, y2]]
-
-            # Calculate slope
-            if x2 - x1 == 0.:  # corner case, avoiding division by 0
-                slope = 999.  # practically infinite slope
-            else:
-                slope = (y2 - y1) / (x2 - x1)
-
-            # Filter lines based on slope
-            if abs(slope) > slope_threshold:
-                slopes.append(slope)
-                new_lines.append(line)
-
-        lines = new_lines
-
-        # Split lines into right_lines and left_lines, representing the right and left lane lines
-        # Right/left lane lines must have positive/negative slope, and be on the right/left half of the image
-        right_lines = []
-        left_lines = []
-        for i, line in enumerate(lines):
-            x1, y1, x2, y2 = line[0]
-            img_x_center = src.shape[1] // 2  # x coordinate of center of image
-            if slopes[i] > 0 and x1 > img_x_center and x2 > img_x_center:
-                right_lines.append(line)
-            elif slopes[i] < 0 and x1 < img_x_center and x2 < img_x_center:
-                left_lines.append(line)
-
-        # Run linear regression to find best fit line for right and left lane lines
-        # Right lane lines
-        right_lines_x = []
-        right_lines_y = []
-
-        for line in right_lines:
-            x1, y1, x2, y2 = line[0]
-
-            right_lines_x.append(x1)
-            right_lines_x.append(x2)
-
-            right_lines_y.append(y1 + height // 2)
-            right_lines_y.append(y2 + height // 2)
-
-        if len(right_lines_x) > 0:
-            right_m, right_b = np.polyfit(right_lines_x, right_lines_y, 1)  # y = m*x + b
-        else:
-            right_m, right_b = 1, 1
-            draw_right = False
-
-        # Left lane lines
-        left_lines_x = []
-        left_lines_y = []
-
-        for line in left_lines:
-            x1, y1, x2, y2 = line[0]
-
-            left_lines_x.append(x1)
-            left_lines_x.append(x2)
-
-            left_lines_y.append(y1 + height // 2)
-            left_lines_y.append(y2 + height // 2)
-
-        if len(left_lines_x) > 0:
-            left_m, left_b = np.polyfit(left_lines_x, left_lines_y, 1)  # y = m*x + b
-        else:
-            left_m, left_b = 1, 1
-            draw_left = False
-
-        # Find 2 end points for right and left lines, used for drawing the line
-        # y = m*x + b --> x = (y - b)/m
-        y1 = height
-        y2 = height // 2
-
-        right_x1 = (y1 - right_b) / right_m
-        right_x2 = (y2 - right_b) / right_m
-
-        left_x1 = (y1 - left_b) / left_m
-        left_x2 = (y2 - left_b) / left_m
-
-        # Convert calculated end points from float to int
-        y1 = int(y1)
-        y2 = int(y2)
-        right_x1 = int(right_x1)
-        right_x2 = int(right_x2)
-        left_x1 = int(left_x1)
-        left_x2 = int(left_x2)
-
-        # Draw the right and left lines on image
-        if draw_right:
-            cv2.line(src, (right_x1, y1), (right_x2, y2), color, thickness)
-        if draw_left:
-            cv2.line(src, (left_x1, y1), (left_x2, y2), color, thickness)
-        if draw_right and draw_left:
-            center_x1 = (right_x1 + left_x1) // 2
-            center_x2 = (right_x2 + left_x2) // 2
-            cv2.line(src, (center_x1, y1), (center_x2, y2), (0, 255, 0), 3)
-            if center_x2 - center_x1 == 0.:
-                slope = 999.
-            else:
-                slope = (y2 - y1) / (center_x2 - center_x1)
-            return slope
-
     ##################################################
-    weighted_img(img, img)
     img_show = img.copy()
-    # ROI
-    height, width = img.shape[:2]
-    img_upper = img[:height // 2, :]
-    img_lower = img[height - (height // 2):, :]
-
-    top_start = 200
-    top_width = 120
-    bot_start = 40
-    bot_width = 200
-
-    vertices1 = np.array([[(bot_start, height), (top_start, 0),
-                           (top_start + top_width, 0), (bot_start + bot_width, height)]], dtype=np.int32)
-    vertices2 = np.array([[(width - bot_start - bot_width, height), (width - top_start - top_width, 0),
-                           (width - top_start, 0), (width - bot_start, height)]], dtype=np.int32)
+    weighted_img(img, img)
 
     # gray scaling
-    gray = cv2.cvtColor(img_lower, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # Gaussian blur
     gray_blur = cv2.GaussianBlur(gray, ksize=(3, 3), sigmaX=0.0)
-    blur = cv2.GaussianBlur(img_lower, ksize=(3, 3), sigmaX=0.0)
+    blur = cv2.GaussianBlur(img, ksize=(3, 3), sigmaX=0.0)
 
-    # HSV color picker
+    # HSV color
     hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
-    lower_Oran = (0, 40, 40)
-    upper_Oran = (25, 255, 255)
-    hsvOran = cv2.inRange(hsv, lower_Oran, upper_Oran)
-    hsvO_roi = roi(hsvOran, (vertices1, vertices2))
+    lower_Green = (65, 100, 50)
+    upper_Green = (80, 255, 200)
+    hsvGreen = cv2.inRange(hsv, lower_Green, upper_Green)
 
-    # pinkL, pinkU = getTrackbar()
+    pinkL, pinkU = getTrackbar()
     # hsvPink = cv2.inRange(hsv, pinkL, pinkU)
-
-    # diff = [30, 30, 40]
-    # pixel = hsv[int(height // 2 * 0.95), width // 2]
-    # centerL = pixel - diff
-    # centerH = pixel + diff
-    # hsvCenter = 255 - cv2.inRange(hsv, centerL, centerH)
 
     # Canny
     edges = cv2.Canny(gray_blur, 50, 100)
-    edges_hsvO = cv2.Canny(hsvOran, 100, 200)
-    # edges_hsvC = cv2.Canny(hsvCenter, 100, 200)
 
-    # apply roi in edges frame
-    # edges_roi = roi(edges, (vertices1, vertices2))
-    # edges_hsvO_roi = roi(edges_hsvO, (vertices1, vertices2))
-    # edges_hsvC_roi = roi(edges_hsvC, (vertices1, vertices2))
+    # add hsv and edges binary image
+    img_bin = cv2.add(edges, hsvGreen)
 
-    # Hough
-    # lines_edgesRoi = hough(edges_roi)
-    # lines_edgesO_Roi = hough(edges_hsvO_roi)
-    # lines_edgesC_Roi = hough(edges_hsvC_roi)
-    lines_hsvO_Roi = hough(hsvO_roi)
+    # ROI
+    height, width = img.shape[:2]
+    near_roi_height = 100
+    mid_roi_height = 80
+    # far_roi_height = 80
+    near_height = height - near_roi_height
+    mid_height = height - near_roi_height - mid_roi_height
+    # far_height = height - near_roi_height - mid_roi_height - far_roi_height
 
-    # 직선 / 곡선 감지
-    # ROI 표시
-    vertices1_full = np.array([[(bot_start, height), (top_start, height // 2),
-                           (top_start + top_width, height // 2), (bot_start + bot_width, height)]], dtype=np.int32)
-    vertices2_full = np.array([[(width - bot_start - bot_width, height), (width - top_start - top_width, height // 2),
-                           (width - top_start, height // 2), (width - bot_start, height)]], dtype=np.int32)
-    cv2.polylines(img_show, vertices1_full, True, (255, 0, 255), 1)
-    cv2.polylines(img_show, vertices2_full, True, (255, 0, 255), 1)
-
-    # drawLines(img_show, lines_edgesRoi, (255, 100, 100))
-    # drawLines(img_show, lines_edgesO_Roi)
-    # drawLines(img_show, lines_edgesC_Roi, (180, 0, 180))
-    try:
-        slope = drawOneLine(img_show, lines_hsvO_Roi)
-    except:
-        slope = None
-
-    if slope is None:
-        # lines_edges = hough(edges)
-        lines_hsvO = hough(hsvOran)
-        # drawLines(img_show, lines_edgesRoi, (255, 100, 255))
-        # drawLines(img_show, lines_hsvO_Roi, (255, 0, 0), 1)
-        try:
-            slope = drawOneLine(img_show, lines_hsvO)
-        except:
-            slope = None
-
-    # decision
-    decision = None
-    if slope is not None:
-        if abs(slope) < 10:
-            decision_left = slope > 0
-            decision_right = slope < 0
-            decision = [decision_left, decision_right, abs(slope)]
+    near_vertices, near_detected = get_roi_square(hsvGreen, img_bin, img_show, near_height, height)
+    mid_vertices, mid_detected = get_roi_square(hsvGreen, img_bin, img_show, mid_height, near_height)
+    # far_vertices, far_lines = get_roi_square(hsvGreen, img_bin, img_show, far_height, mid_height)
+    roi_bin = roi(img_bin, near_vertices + mid_vertices)
+    detected = [near_detected, mid_detected]
 
     # draw center line
-    cv2.line(img_show, (width // 2, height), (width // 2, height // 2), (180, 50, 50), 3)
+    cv2.line(img_show, (width // 2, height), (width // 2, height // 2), (50, 180, 50), 2)
 
     # cv2.imshow('origin', ori_img)
     cv2.imshow('frame', img_show)
-    cv2.imshow('blur', blur)
     cv2.imshow('edges', edges)
-    # cv2.imshow('edges roi', edges_roi)
-    cv2.imshow('edges HSV Oran', edges_hsvO)
-    # cv2.imshow('edges HSV Oran roi', edges_hsvO_roi)
-    # cv2.imshow('edges HSV center line', edges_hsvC)
-    # cv2.imshow('edges HSV center roi', edges_hsvC_roi)
-    # cv2.imshow('HSV Pink', hsvPink)
-    # cv2.setMouseCallback('frame', onMouse)
+    cv2.imshow('HSV green', hsvGreen)
+    cv2.imshow('roi_bin', roi_bin)
+    cv2.setMouseCallback('frame', onMouse)
 
     ret, buffer = cv2.imencode('.jpg', img_show)
     frame = buffer.tobytes()
 
-    return frame, decision
+    return frame, detected

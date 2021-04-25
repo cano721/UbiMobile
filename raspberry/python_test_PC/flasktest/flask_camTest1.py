@@ -15,7 +15,7 @@ from collections import deque
 app = Flask(__name__)
 GPIO.setmode(GPIO.BCM)
 auto = False
-myname = "192.168.200.183"
+# myname = "192.168.200.183"
 # mqttSub = MotormqttSub(myname)
 
 MAX_DECISION_LENGTH = 30

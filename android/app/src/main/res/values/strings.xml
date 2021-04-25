@@ -11,4 +11,18 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="manual">수동 주행</string>
+    <string name="auto">자율 주행</string>
+    <string name="connect_cam">카메라 연결</string>
+    <string name="dir_front">↑</string>
+    <string name="dir_back">↓</string>
+    <string name="dir_left">←</string>
+    <string name="dir_right">→</string>
+    <string name="dir_leftCurve">↖</string>
+    <string name="dir_rightCurve">↗</string>
+    <string name="dir_leftBack">↙</string>
+    <string name="dir_rightBack">↘</string>
+    <string name="control_dist">차량 간격 제어</string>
+    <string name="control_velocity">차량 속도 제어</string>
+    <string name="change_lane">차선 변경</string>
 </resources>

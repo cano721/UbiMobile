@@ -4,47 +4,269 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context=".fragment.DriveCamFragment">
+    android:orientation="vertical"
+    tools:context=".fragment.DriveCamFragment"
+    android:background="@drawable/gradient">
 
     <WebView
         android:id="@+id/web_view_cam"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.45" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:layout_weight="0.55">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:layout_weight="1"
-            android:background="@drawable/button1"
-            android:textColor="@color/black"
-            android:text="수동 주행"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="0.7">
+            <Button
+                android:id="@+id/set_manual"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/button1"
+                android:textColor="@color/black"
+                android:text="@string/manual"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:layout_weight="1"
-            android:background="@drawable/button1"
-            android:textColor="@color/black"
-            android:text="자율 주행"/>
+            <Button
+                android:id="@+id/set_auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/button1"
+                android:textColor="@color/black"
+                android:text="@string/auto"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:layout_weight="1"
-            android:background="@drawable/button1"
-            android:textColor="@color/black"
-            android:text="카메라 연결"/>
+            <Button
+                android:id="@+id/set_camera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/button1"
+                android:textColor="@color/black"
+                android:text="@string/connect_cam"/>
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3">
+
+            <TableLayout
+                android:id="@+id/manual_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="invisible">
+                <TableRow
+                    android:layout_weight="1">
+                    <Button
+                        android:id="@+id/manual_leftCurve"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/button"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:text="@string/dir_leftCurve"/>
+
+                    <Button
+                        android:id="@+id/manual_Front"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/button"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:text="@string/dir_front"/>
+
+                    <Button
+                        android:id="@+id/manual_rightCurve"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/button"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:text="@string/dir_rightCurve"/>
+                </TableRow>
+                <TableRow
+                    android:layout_weight="1">
+                    <Button
+                        android:id="@+id/manual_left"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/button"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:text="@string/dir_left"/>
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/button"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:enabled="false"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/manual_right"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/button"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:text="@string/dir_right"/>
+                </TableRow>
+                <TableRow
+                    android:layout_weight="1">
+                    <Button
+                        android:id="@+id/manual_leftBack"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/button"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:text="@string/dir_leftBack"/>
+
+                    <Button
+                        android:id="@+id/manual_back"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/button"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:text="@string/dir_back"/>
+
+                    <Button
+                        android:id="@+id/manual_rightBack"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/button"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:text="@string/dir_rightBack"/>
+                </TableRow>
+            </TableLayout>
+
+            <LinearLayout
+                android:id="@+id/auto_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:visibility="invisible">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:text="@string/control_dist"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <SeekBar
+                        android:id="@+id/auto_seekBar_distance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0.2"
+                        android:background="@color/white"
+                        android:max="50"
+                        android:progress="10" />
+                    <TextView
+                        android:id="@+id/auto_text_distance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:text="10 cm"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:text="@string/control_velocity"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <SeekBar
+                        android:id="@+id/auto_seekBar_velocity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0.2"
+                        android:background="@color/white"
+                        android:max="100"
+                        android:progress="40" />
+                    <TextView
+                        android:id="@+id/auto_text_velocity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:text="40"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:text="@string/change_lane"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/auto_lane_left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button"
+                        android:layout_marginEnd="30dp"
+                        android:textSize="20sp"
+                        android:text="@string/dir_left"/>
+                    <Button
+                        android:id="@+id/auto_lane_right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button"
+                        android:textSize="20sp"
+                        android:text="@string/dir_right"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </FrameLayout>
+
 
     </LinearLayout>
-
 </LinearLayout>
