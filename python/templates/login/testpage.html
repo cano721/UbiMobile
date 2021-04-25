@@ -1,0 +1,480 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body{
+    margin: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: #483F37;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    padding: 8px 12px;
+}
+.loginText{
+    list-style: none;
+    display: flex;
+    align-items: right;
+    background-color: white;
+    padding: 8px 12px;
+}
+.loginText li:hover{
+    background-color: #C4C4C4;
+}
+
+.logo{
+    /* park bentley */
+    position: absolute;
+    width: 146px;
+    height: 79px;
+    left: 350px;
+    top: 88px;
+
+    font-family: "Red Rose";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 45px;
+
+    color: #999999;
+}
+
+
+.navbar_menu{
+   /* like 서비스 이용 */
+   display: flex;
+   list-style: none;
+   padding-left: 0;
+    /* padding-right: 10; */
+   position: absolute;
+   /* width: 117px;
+   height: 30px; */
+   left: 673px;
+   top: 106px;
+
+   font-family: "Red Rose";
+   font-style: normal;
+   font-weight: normal;
+   font-size: 24px;
+   line-height: 30px;
+   /* identical to box height */
+   color: #857E71;
+
+
+}
+.navbar_menu li{
+    padding: 8px 12px;
+
+}
+.navbar_menu ul {
+    list-style: none;
+    padding-left: 0;
+    border: none;
+    padding:0px;
+    margin:0px;
+}
+.navbar_menu li a{
+    margin:0px;
+    padding:0px 10px;
+    text-align:center;
+    text-decoration:none;
+}
+.loginText{
+    /* 로그인 회원가입 */
+    position: absolute;
+    width: 138px;
+    height: 22px;
+    left: 1259px;
+    top: 44px;
+    font-family:" Red Rose";
+    text-decoration:none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    list-style: none;
+    color: #EAD08C;
+}
+.loginText li{
+    padding-left: 0;
+    padding: 8px 12px;
+}
+.loginText li a{
+    margin:0px;
+    padding:0px 10px;
+    text-align:center;
+    text-decoration:none;
+}
+.yellowBar{
+    /* Rectangle 3 */
+    position: absolute;
+    vertical-align: middle;
+    width: 100%;
+    height: 96px;
+    left: 0px;
+    top: 193px;
+    background: #EAD08C;
+
+}
+.yellowBarText{
+    text-align: center;
+    vertical-align: middle;
+
+    font-family: "Red Rose";
+    font-style: normal;
+    font-weight: normal;
+
+    font-size: 35px;
+    line-height: 35px;
+    /* identical to box height */
+    color: #886E50;
+}
+.portfolio .portfolio-item {
+  margin-bottom: 30px;
+}
+
+.portfolio #portfolio-flters {
+  padding: 0;
+  margin: 0 auto 25px auto;
+  list-style: none;
+  text-align: center;
+}
+
+.portfolio #portfolio-flters li {
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 18px 12px 18px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #555555;
+  transition: all 0.3s ease-in-out;
+  margin: 0 4px 10px 4px;
+  background: whitesmoke;
+  border-radius: 4px;
+}
+
+.portfolio #portfolio-flters li:hover, .portfolio #portfolio-flters li.filter-active {
+  background: #7cc576;
+  color: #fff;
+}
+
+.portfolio #portfolio-flters li:last-child {
+  margin-right: 0;
+}
+
+.portfolio .portfolio-wrap {
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.portfolio .portfolio-wrap::before {
+  content: "";
+  background: rgba(21, 21, 21, 0.6);
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  top: 30px;
+  bottom: 30px;
+  transition: all ease-in-out 0.3s;
+  z-index: 2;
+  opacity: 0;
+}
+
+.portfolio .portfolio-wrap .portfolio-info {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 3;
+  transition: all ease-in-out 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.portfolio .portfolio-wrap .portfolio-info::before {
+  display: block;
+  content: "";
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  top: 35px;
+  left: 35px;
+  border-top: 3px solid #fff;
+  border-left: 3px solid #fff;
+  transition: all 0.5s ease 0s;
+  z-index: 9994;
+}
+
+.portfolio .portfolio-wrap .portfolio-info::after {
+  display: block;
+  content: "";
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  bottom: 35px;
+  right: 35px;
+  border-bottom: 3px solid #fff;
+  border-right: 3px solid #fff;
+  transition: all 0.5s ease 0s;
+  z-index: 9994;
+}
+
+.portfolio .portfolio-wrap .portfolio-info h4 {
+  font-size: 20px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.portfolio .portfolio-wrap .portfolio-info p {
+  color: #ffffff;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 0;
+  margin: 0;
+}
+
+.portfolio .portfolio-wrap .portfolio-links {
+  text-align: center;
+  z-index: 4;
+}
+
+.portfolio .portfolio-wrap .portfolio-links a {
+  color: #fff;
+  margin: 0 2px;
+  font-size: 28px;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.portfolio .portfolio-wrap .portfolio-links a:hover {
+  color: #7cc576;
+}
+
+.portfolio .portfolio-wrap:hover::before {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 1;
+}
+
+.portfolio .portfolio-wrap:hover .portfolio-info {
+  opacity: 1;
+}
+
+.portfolio .portfolio-wrap:hover .portfolio-info::before {
+  top: 15px;
+  left: 15px;
+}
+
+.portfolio .portfolio-wrap:hover .portfolio-info::after {
+  bottom: 15px;
+  right: 15px;
+}
+
+/*--------------*/
+.navbar_menu li a:hover, .navbar_menu ul li:hover a{
+    background: #C4C4C4;
+    color:#FFFFFF;
+    text-decoration:none;
+    }
+
+    .navbar_menu li ul{
+    background: #C4C4C4;
+    display:none;
+    height:auto;
+    border:0px;
+    position:absolute;
+    width:200px;
+    z-index:200;
+    }
+
+    .navbar_menu li:hover ul{
+    display:block;
+    }
+
+    .navbar_menu li li {
+    background: #C4C4C4;
+    display:block;
+    float:none;
+    margin:0px;
+    padding:0px;
+    width:200px;
+    }
+
+    .navbar_menu li:hover li a{
+    background:none;
+    }
+
+    .navbar_menu li ul a{
+    display:block;
+    height:30px;
+    margin:0px;
+    padding:0px 10px 0px 15px;
+    text-align:left;
+    }
+
+    .navbar_menu li ul a:hover, .navbar_menu li ul li:hover a{
+    background: rgb(171,171,171);
+    border:0px;
+    color:#ffffff;
+    text-decoration:none;
+    }
+
+    .navbar_menu p{
+    clear:left;
+    }
+</style>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Knight - v2.2.1
+  * Template URL: https://bootstrapmade.com/knight-free-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container">
+
+      <!-- The main logo is shown in mobile version only. The centered nav-logo in nav menu is displayed in desktop view  -->
+      <div class="logo d-block d-lg-none">
+        <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul class="nav-inner">
+          <li class="active"><a href="https://github.com/cano721">계해범</a></li>
+          <li><a href="https://github.com/angriff1">목민수</a></li>
+          <li><a href="https://github.com/soomin98">박수민</a></li>
+          <li><a href="https://github.com/cano721/UbiMobile">배경륜</a></li>
+
+          <li class="nav-logo"><a href=""><img src="static/assets/img/logo.png" alt="" class="img-fluid"></a></li>
+          {% if 'suser' in request.session %}
+          <li><a href="{% url 'parkpage' %}">Park</a></li>
+          <li><a href="{% url 'adminpage' %}">Admin</a></li>
+          <li><a href="{% url 'loginpage' %}">login</a></li>
+          <li><a href="{% url 'joinpage' %}">register</a></li>
+          {% else %}
+          <li><a href="{% url 'loginpage' %}">Park</a></li>
+          <li><a href="{% url 'loginpage' %}">Admin</a></li>
+          <li><a href="{% url 'loginpage' %}">logout</a></li>
+          <li><a href="{% url 'joinpage' %}">register</a></li>
+          {% endif %}
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+</body>
+<body>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+
+    <section id="hero">
+    <div class="hero-container">
+        <div class="logo">
+            <a href="">UbiMobile</a>
+        </div>
+        <ul class="navbar_menu">
+            <li><a href="parkpage.html">주차장 현황</a>
+            </li>
+            <li><a href="">주차장 등록</a>
+            </li>
+            <li><a href="">주차장 삭제</a>
+            </li>
+            <li><a href="">주차장 수정</a>
+            </li>
+        </ul>
+    </div>
+    </section>
+
+
+  {% block content %}
+  {% endblock %}
+<!--    &lt;!&ndash; ======= Breadcrumbs ======= &ndash;&gt;-->
+<!--    <section class="breadcrumbs">-->
+<!--      <div class="container">-->
+
+<!--        <div class="d-flex justify-content-between align-items-center">-->
+<!--          <h2>Inner Page</h2>-->
+<!--          <ol>-->
+<!--            <li><a href="index.html">Home</a></li>-->
+<!--            <li>Inner Page</li>-->
+<!--          </ol>-->
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </section>&lt;!&ndash; End Breadcrumbs &ndash;&gt;-->
+
+<!--    <section class="inner-page">-->
+<!--      <div class="container">-->
+<!--        <p>-->
+<!--          Example inner page template-->
+<!--        </p>-->
+<!--      </div>-->
+<!--    </section>-->
+
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery-sticky/jquery.sticky.js' %}"></script>
+  <script src="{% static 'assets/vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

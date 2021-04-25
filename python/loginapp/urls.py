@@ -26,4 +26,7 @@ urlpatterns = [
     path('loginAndroid',views.loginAndroid, name='loginAndroid'),
     path('UsersCarAndroid',views.UsersCarAndroid, name='UsersCarAndroid'),
     path('ParkingAndroid',views.ParkingAndroid, name='ParkingAndroid'),
+    path('testpage',views.testpage, name='testpage'),
+    path('parkjoin',views.parkjoin, name='parkjoin'),
+    path('reservation',views.reservation, name='reservation'),
 ]
