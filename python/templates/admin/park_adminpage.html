@@ -11,7 +11,9 @@
                 }
 
 h1{ color: white;}
-
+#button_div{
+    margin-top: 30px;
+}
 </style>
 <section id="park_adminpage" >
     {% if parking %}
@@ -22,15 +24,24 @@ h1{ color: white;}
       <h2 data-aos="zoom-in" style="color:white;">{{p.p_name}}</h2>
       <h4 data-aos="fade-up" style="color:white;">주소: {{p.p_addr}}</h4>
       <h4 data-aos="fade-up" style="color:white;">주차대수: {{p.p_cap}}대</h4>
-      <a data-aos="fade-up" href="park_adminUpdate" style="text-size 24px;" class="btn-get-started scrollto">수정하러가기</a>
+        <!--p.p_id, p.p_name, p.p_addr, p.p_cap-->
+      <a data-aos="fade-up" href="park_adminUpdate" style="text-size 24px;" class="btn-get-started scrollto">수정하기</a>
+        <a>ㅣ</a>
+      <a data-aos="fade-up" href="" style="text-size 24px;" class="btn-get-started scrollto">삭제하기</a>
     </div>
+
     </div>
-    {% endfor %}
+
+   {% endfor %}
+    <div id="button_div" align="center">
+    <button>추가 등록하기</button>
+    </div>
     {% else %}
     <h3 style="text-align:center; color:white;">등록된 주차장이 없습니다.</h3>
-    <div id="button_div" align="center">
+    <div id="button_div2" align="center">
     <button>등록하기</button>
     </div>
+
     {% endif %}
 
 </section>

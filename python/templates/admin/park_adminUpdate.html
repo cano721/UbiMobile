@@ -12,17 +12,33 @@
 
 h1{ color: white;}
 
+.form-control{
+    width: 350px;
+    height: 50px;
+    border-radius: 25px;
+    margin-top: 5px;
+    background: #EBEBEB
+}
+.id {
+    color: white;
+
+}
+
 </style>
 <section id="park_adminpage" >
 
     <div align="center">
-    <div class="hero-container" style="border: 5px solid white; width: 50%;" align="center">
-     <form action="" method="post" role="form" onsubmit="toEnabled()">
+    <div class="hero-container" style="border: 0px solid white; width: 50%;" align="center">
+     <form action="" method="post" role="form">
            {% csrf_token %}
-        <input type="text" name="u_id" class="form-control" id="u_id" placeholder="주차장이름"/><input style="margin:5px 0px 0px 0px;" name='idcheck' type="button" value="중복체크">
-        <input type="text" class="form-control" name="u_pwd_1" id="pwd" placeholder="주소" />
-        <input type="number" class="form-control" name="u_age" id="age" placeholder="주차대수" />
-        <div class="text-center"><button name="submit" type="submit">Register</button></div>
+
+         <label class="id">주차장이름</label>
+        <input style = "margin :5px;" type="text" name="p_name" class="form-control" id="p_name" value="{{p_name}}"/>
+         <label class="id">주소</label>
+         <input style = "margin :5px;" type="text" class="form-control" name="p_addr" id="p_addr"  />
+         <label class="id">주차대수</label>
+        <input style = "margin :5px;" type="number" class="form-control" name="p_cap" id="p_cap"  />
+        <div class="text-center"><button style = "margin :20px;" name="submit" type="submit">Register</button></div>
       </form>
     </div>
     </div>
