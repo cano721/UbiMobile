@@ -19,7 +19,6 @@ def park_adminpage(request):
         context = {
             'parking': parking
         }
-        print(parking)
         return render(request,'admin/park_adminpage.html',context)
     except:
         return render(request,'admin/park_adminpage.html')
@@ -31,13 +30,28 @@ def car_infopage(request):
 
 def data_infopage(request):
     u_id = request.session['suser']
-
-    return render(request,'admin/data_infopage.html')
+    datas = Users_car_ac.objects.filter(uca_pulse__range=(1, 60))
+    print(datas)
+    context = {
+        'datas': datas,
+    }
+    return render(request,'admin/data_infopage.html',context)
 
 def park_adminUpdate(request):
     u_id = request.session['suser']
 
     return render(request,'admin/park_adminUpdate.html')
+
+def park_adminDelete(request):
+    u_id = request.session['suser']
+    data = Parking.objects.filter(u_id = u_id)
+    data.delete()
+    parking = Parking.objects.filter(u_id=u_id)
+    context = {
+        'parking': parking
+    }
+    id = request.POST['id']
+    return render(request, 'admin/park_adminpage.html', context)
 
 
 def graph1(request):
@@ -99,14 +113,5 @@ def graph3(request):
     context = {
         'datas': datas,
         'numbers' : numbers
-    }
-    return JsonResponse(context)
-
-def graph4(request):
-    datas = Users_car_ac.objects.filter(uca_pulse__range = (1,60))
-    print(datas)
-    datas2 = Users_car_ac.objects.all()
-    context = {
-        'datas': datas,
     }
     return JsonResponse(context)
