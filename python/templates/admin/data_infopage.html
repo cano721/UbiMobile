@@ -2,5 +2,235 @@
 
 {% load static %}
 {% block content %}
-<h1> 데이터 관리 페이지</h1>
+<!-- 1번그래프-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/series-label.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<!-- 2번그래프-->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<!-- 3번,4번그래프-->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<style>
+#featured{
+  background-image: url(static/assets/img/portfolio/gradient.JPG);
+}
+</style>
+<script>
+function graph1(data){
+            graphdata = data.datas;
+            Highcharts.chart('containers', {
+    chart: {
+        type: 'pie',
+        options3d: {
+            enabled: true,
+            alpha: 45
+        }
+    },
+    title: {
+        text: '연령별 회원 수'
+    },
+    subtitle: {
+        text: '기준'
+    },
+    plotOptions: {
+        pie: {
+            innerSize: 100,
+            depth: 45
+        }
+    },
+    series: graphdata
+});
+};
+function graph2(data){
+            graphdata = data.datas;
+            Highcharts.chart('containers', {
+    chart: {
+        type: 'pie',
+        options3d: {
+            enabled: true,
+            alpha: 45
+        }
+    },
+    title: {
+        text: '성별 회원 수'
+    },
+    subtitle: {
+        text: '기준'
+    },
+    plotOptions: {
+        pie: {
+            innerSize: 100,
+            depth: 45
+        }
+    },
+    series: graphdata
+});
+};
+  function graph3(data){
+            graphdata = data.datas;
+            Highcharts.chart('containers', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: '모델 명'
+    },
+    subtitle: {
+        text: ''
+    },
+    xAxis: {
+        type: 'category',
+        labels: {
+            rotation: -45,
+            style: {
+                fontSize: '13px',
+                fontFamily: 'Verdana, sans-serif'
+            }
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: '차량 수'
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    tooltip: {
+        pointFormat: '조회 수:{point.y}'
+    },
+    series: [{
+        name: 'Population',
+        data: graphdata,
+        dataLabels: {
+            enabled: true,
+            rotation: -90,
+            color: '#FFFFFF',
+            align: 'right',
+            format: '', // one decimal
+            y: 10, // 10 pixels down from the top
+            style: {
+                fontSize: '13px',
+                fontFamily: 'Verdana, sans-serif'
+            }
+        }
+    }]
+});
+};
+
+
+  function getData(){
+            $.ajax({
+                url: '{% url "graph1" %}',
+                success:function(data){
+                    graph1(data);
+                }
+            });
+        };
+  function getData2(){
+            $.ajax({
+                url: '{% url "graph2" %}',
+                success:function(data){
+                    graph2(data);
+                }
+            });
+        };
+  function getData3(){
+            $.ajax({
+                url: '{% url "graph3" %}',
+                success:function(data){
+                    graph3(data);
+                }
+            });
+        };
+  $(document).ready(function(){
+    $('#graph1').click(function(){
+                getData();
+            });
+    $('#graph2').click(function(){
+                getData2();
+            });
+    $('#graph3').click(function(){
+                getData3();
+            });
+
+</script>
+<!-- ======= Featured Section ======= -->
+    <section id="featured" class="featured">
+      <h1> 데이터  </h1>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-6" data-aos="fade-right">
+            <div class="tab-content">
+              <div class="tab-pane active show" id="containers">
+<!--                <figure>-->
+<!--                  <img src="static/assets/img/featured-1.png" alt="" class="img-fluid">-->
+<!--                </figure>-->
+              </div>
+              <div class="tab-pane" id="tab-2">
+                <figure>
+                  <img src="static/assets/img/featured-2.png" alt="" class="img-fluid">
+                </figure>
+              </div>
+              <div class="tab-pane" id="tab-3">
+                <figure>
+                  <img src="static/assets/img/featured-3.png" alt="" class="img-fluid">
+                </figure>
+              </div>
+              <div class="tab-pane" id="tab-4">
+                <figure>
+                    {% for i in datas %}
+                      <h4>{{i.u_id}}</h4>
+                      <h4>rrrr</h4>
+                    {% endfor %}
+                </figure>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 mt-4 mt-lg-0" data-aos="fade-left">
+            <ul class="nav nav-tabs flex-column">
+              <li class="nav-item" >
+                <a class="nav-link active show" id="graph1" data-toggle="tab" href="#containers">
+                  <h4>회원수</h4>
+                  <p>전체 회원수와 나이대별 회원수를 확인</p>
+                </a>
+              </li>
+              <li class="nav-item mt-2">
+                <a class="nav-link" id="graph2" data-toggle="tab" href="#containers2">
+                  <h4>차량 모델별 대수</h4>
+                  <p>각 모델 별 차량 대수를 확인</p>
+                </a>
+              </li>
+              <li class="nav-item mt-2">
+                <a class="nav-link" id="graph3" data-toggle="tab" href="#containers3">
+                  <h4>차량 모델별 대수</h4>
+                  <p>각 모델 별 차량 대수를 확인</p>
+                </a>
+              </li>
+              <li class="nav-item mt-2">
+                <a class="nav-link" id="graph4" data-toggle="tab" href="#tab-4">
+                  <h4>졸음운전 추정 수</h4>
+                  <p>사고당시 맥박이 60이하로 낮았던 사고 건</p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+        <h1>　</h1>
+    </section><!-- End Featured Section -->
 {% endblock %}

@@ -35,3 +35,19 @@ class Parking_floor(models.Model):
     def __str__(self):
         return str(self.pf_id) + ' ' + self.u_id + ' ' + str(self.p_id) + ' ' + str(self.pf_floor) + ' ' + str(
             self.pf_space) + ' ' + str(self.pf_data) + ' ';
+
+class Users_car_ac(models.Model):
+    uca_id = models.AutoField(db_column='uca_id', primary_key=True)
+    uc_id = models.IntegerField(db_column='uc_id')
+    u_id = models.CharField(db_column='u_id', max_length=20)
+    uc_number = models.CharField(db_column='uc_number', max_length=10)
+    uca_date = models.DateField(db_column='uca_date')
+    uca_pulse = models.IntegerField(db_column='uca_pulse')
+
+    class Meta:
+        managed = False
+        db_table = 'users_car_ac'
+
+    def __str__(self):
+        return str(self.uca_id) + ' ' + str(self.uc_id) + ' ' + self.u_id + ' ' + self.uc_number + ' '\
+               + str(self.uca_date) + ' ' + str(self.uca_pulse) + ' ';

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4516037e-ce94-4880-b2ec-b91d02a3caf9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../python/adminapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../python/adminapp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../python/loginapp/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../python/loginapp/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../python/parkapp/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../python/parkapp/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../python/parkapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../python/parkapp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../python/parkapp/mqtt_sub.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../python/parkapp/mqtt_sub.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../python/parkapp/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../python/parkapp/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../python/templates/admin/park_adminpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../python/templates/admin/park_adminpage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../function/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../function/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../function/mqtt_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/../function/mqtt_function.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1rh8xVXlEhwzQieYZXjjF61zd6G" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4516037e-ce94-4880-b2ec-b91d02a3caf9" name="Default Changelist" comment="" />
+      <created>1619417207894</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1619417207894</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
