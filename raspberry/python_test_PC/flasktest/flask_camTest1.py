@@ -15,8 +15,6 @@ from collections import deque
 app = Flask(__name__)
 GPIO.setmode(GPIO.BCM)
 auto = False
-# myname = "192.168.200.183"
-# mqttSub = MotormqttSub(myname)
 
 MAX_DECISION_LENGTH = 30
 decisions = deque([])
@@ -31,59 +29,10 @@ def show(camera):
     global auto
     while True:
         frame, img = camera.getStreaming()
-        img_show, decision = imageProcess(img)
+        img_show, detected, i_param = imageProcess(img)
 
         if auto:
             frame = img_show
-            # mqttSub.manual = False
-
-            if decision is not None:
-                speed = 30
-                if decision[2] > 5:
-                    ratio = 0.8
-                elif decision[2] > 3:
-                    ratio = 0.5
-                else:
-                    ratio = 0
-                if decision[0]:
-                    print("Left %d" % decision[2])
-                    # mqttSub.motor.move(speed, leftRatio=ratio)
-                    motor.move(speed, leftRatio=ratio)
-                    decisions.append(LEFT)
-                elif decision[1]:
-                    print("Right %d" % decision[2])
-                    # mqttSub.motor.move(speed, rightRatio=ratio)
-                    motor.move(speed, rightRatio=ratio)
-                    decisions.append(RIGHT)
-                else:
-                    # mqttSub.motor.move(70)
-                    motor.move(50)
-                    decisions.append(FRONT)
-                if len(decisions) > MAX_DECISION_LENGTH:
-                    decisions.popleft()
-            else:
-                if len(decisions) == 0:
-                    # mqttSub.motor.move(0)
-                    motor.move(0)
-                    decisions.append(STOP)
-                else:
-                    decision = decisions.popleft()
-                    if decision == FRONT:
-                        # mqttSub.motor.move(50)
-                        motor.move(40)
-                    elif decision == LEFT:
-                        # mqttSub.motor.move(40, leftRatio=0)
-                        motor.move(30, leftRatio=0)
-                    elif decision == RIGHT:
-                        # mqttSub.motor.move(40, RightRatio=0)
-                        motor.move(30, rightRatio=0)
-                    else:
-                        # mqttSub.motor.move(0)
-                        motor.move(0)
-
-        else:
-            # mqttSub.manual = True
-            pass
 
         cv2.waitKey(41)
 

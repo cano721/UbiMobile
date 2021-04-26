@@ -4,7 +4,7 @@ import numpy as np
 from imageProcess import imageProcess, showTrackbar
 
 
-videoName = "video423.h264"
+videoName = "videoTraff2.h264"
 
 
 if __name__ == "__main__":
@@ -22,7 +22,7 @@ if __name__ == "__main__":
             ret, buffer = cv2.imencode('.jpg', img)
             frame = buffer.tobytes()
 
-            img_show, detected = imageProcess(img)
+            img_show, detected, i_param = imageProcess(img)
 
         k = cv2.waitKey(33) & 0xff
         if k == 27:  # press 'ESC' to quit
