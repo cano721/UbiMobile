@@ -39,8 +39,17 @@ def data_infopage(request):
 
 def park_adminUpdate(request):
     u_id = request.session['suser']
-
-    return render(request,'admin/park_adminUpdate.html')
+    # p_id = request.POST['p_id']
+    # p_name = request.POST['p_name']
+    # p_addr = request.POST['p_addr']
+    # p_cap = request.POST['p_cap']
+    context = {
+        # 'p_id' : p_id,
+        # 'p_name' : p_name,
+        # 'p_addr' : p_addr,
+        # 'p_cap' : p_cap,
+    }
+    return render(request,'admin/park_adminUpdate.html',context)
 
 def park_adminDelete(request):
     u_id = request.session['suser']

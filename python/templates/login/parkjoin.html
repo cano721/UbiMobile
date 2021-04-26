@@ -56,7 +56,7 @@ a{
    position: absolute;
    /* width: 117px;
    height: 30px; */
-   left: 850px;
+   left: 1000px;
    top: 106px;
 
    font-family: "Red Rose";
@@ -212,6 +212,13 @@ a{
     margin-right: 250px;
     font-size: 20px;
 }
+#btn01 {
+    position: absolute;
+    margin-top: 20px;
+    margin-left: -30px;
+    cursor: pointer;
+    background: #707070;
+}
 
 </style>
 <head>
@@ -291,8 +298,6 @@ a{
             <a href="testpage.html">UbiMobile</a>
         </div>
         <ul class="navbar_menu">
-            <li><a href="parkpage.html">주차장 현황</a>
-            </li>
             <li><a href="parkjoin.html">주차장 등록</a>
             </li>
             <li><a href="">주차장 삭제</a>
@@ -302,26 +307,30 @@ a{
         </ul>
 
         <div class="yellowBar">
-        <p class="yellowBarText">주차장 등록</p>
+        <b class="yellowBarText">주차장 등록</b>
         </div>
 
         <div class="roundYellowBox">
             <div class="text">
-            <a>주차장 이름</a>
+                <div style="border">주차장 이름</div>
         </div>
         <div class="text">
-            <p>주차장 주소</p>
+            <a>주차장 주소</a>
         </div>
         <div class="text">
-            <p>주차장 층수</p>
+            <a>주차장 층수</a>
         </div>
         <div class="text">
-            <p>주차장 자리</p>
+            <a>주차장 자리</a>
         </div>
         <div class="text">
-            <p>주차장 전체공간</p>
+            <a>주차장 전체공간</a>
+        </div>
+            <div>
+            <button type="submit" id="btn01" class="sub">등록하기</button>
         </div>
         </div>
+
     </div>
 
     </section>
