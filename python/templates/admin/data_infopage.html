@@ -54,7 +54,7 @@ function graph1(data){
 };
 function graph2(data){
             graphdata = data.datas;
-            Highcharts.chart('containers', {
+            Highcharts.chart('containers2', {
     chart: {
         type: 'pie',
         options3d: {
@@ -79,7 +79,7 @@ function graph2(data){
 };
   function graph3(data){
             graphdata = data.datas;
-            Highcharts.chart('containers', {
+            Highcharts.chart('containers3', {
     chart: {
         type: 'column'
     },
@@ -165,11 +165,11 @@ function graph2(data){
     $('#graph3').click(function(){
                 getData3();
             });
+    });
 
 </script>
 <!-- ======= Featured Section ======= -->
     <section id="featured" class="featured">
-      <h1> 데이터  </h1>
       <div class="container">
 
         <div class="row">
@@ -180,21 +180,24 @@ function graph2(data){
 <!--                  <img src="static/assets/img/featured-1.png" alt="" class="img-fluid">-->
 <!--                </figure>-->
               </div>
-              <div class="tab-pane" id="tab-2">
+              <div class="tab-pane" id="containers2">
                 <figure>
                   <img src="static/assets/img/featured-2.png" alt="" class="img-fluid">
                 </figure>
               </div>
-              <div class="tab-pane" id="tab-3">
+              <div class="tab-pane" id="containers3">
                 <figure>
                   <img src="static/assets/img/featured-3.png" alt="" class="img-fluid">
                 </figure>
               </div>
               <div class="tab-pane" id="tab-4">
-                <figure>
+                <figure style="width:400px; height: 400px; overflow:scroll;">
                     {% for i in datas %}
-                      <h4>{{i.u_id}}</h4>
-                      <h4>rrrr</h4>
+                      <h4 style="color:white;">아이디: {{i.u_id}}</h4>
+                      <h4 style="color:white;">차량번호: {{i.uc_number}}</h4>
+                      <h4 style="color:white;">사고시간: {{i.uca_date}}</h4>
+                      <h4 style="color:white;">맥박수: {{i.uca_pulse}}</h4>
+                      <h4>　</h4>
                     {% endfor %}
                 </figure>
               </div>
@@ -222,7 +225,7 @@ function graph2(data){
               </li>
               <li class="nav-item mt-2">
                 <a class="nav-link" id="graph4" data-toggle="tab" href="#tab-4">
-                  <h4>졸음운전 추정 수</h4>
+                  <h4>졸음운전 추정 사고 건</h4>
                   <p>사고당시 맥박이 60이하로 낮았던 사고 건</p>
                 </a>
               </li>
