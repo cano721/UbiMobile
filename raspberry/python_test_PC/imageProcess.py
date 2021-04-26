@@ -98,7 +98,7 @@ def get_roi_square(hsv_src, bin_src, show_src, start_height, end_height):
     BOTH = 3
     thresh_inv_slope = 0.6
     thresh_side_width = 100
-    
+
     for i in range(1, retval):
         (x, y, w, h, area) = stats[i]
 
@@ -209,6 +209,13 @@ def get_roi_square(hsv_src, bin_src, show_src, start_height, end_height):
 
 
 def imageProcess(img):
+    NONE = -1
+    FRONT = 0
+    STOP = 1
+    LEFTLINE = 2
+    RIGHTLINE = 3
+    i_param = NONE
+
     def onMouse(event, x, y, flags, param):
         if event == cv2.EVENT_LBUTTONDOWN:
             print("(%d, %d)" % (x, y))
@@ -243,10 +250,13 @@ def imageProcess(img):
     # HSV color
     hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
     lower_Green = (65, 100, 50)
-    upper_Green = (80, 255, 200)
+    upper_Green = (80, 255, 255)
+    lower_Blue = (95, 75, 30)
+    upper_Blue = (120, 255, 255)
     hsvGreen = cv2.inRange(hsv, lower_Green, upper_Green)
+    hsvBlue = cv2.inRange(hsv, lower_Blue, upper_Blue)
 
-    pinkL, pinkU = getTrackbar()
+    # pinkL, pinkU = getTrackbar()
     # hsvPink = cv2.inRange(hsv, pinkL, pinkU)
 
     # Canny
@@ -255,8 +265,70 @@ def imageProcess(img):
     # add hsv and edges binary image
     img_bin = cv2.add(edges, hsvGreen)
 
-    # ROI
+
+    ## ROI
     height, width = img.shape[:2]
+    # traffic light ROI
+    hsvBlue_roi = roi(hsvBlue, np.array([[(width // 2, 0), (width, 0), (width, int(height * 0.6)),
+                                          (width // 2, int(height * 0.6))]], dtype=np.int32))
+
+    # delete small objects
+    kernel = np.ones((7, 7), np.uint8)
+    hsvBlue_roi = cv2.morphologyEx(hsvBlue_roi, cv2.MORPH_CLOSE, kernel)
+
+    retval, labels, stats, centroids = cv2.connectedComponentsWithStats(hsvBlue_roi)
+    min_pixels = 1000
+    blue_vertices = []
+    for i in range(1, retval):
+        (x, y, w, h, area) = stats[i]
+
+        # select two biggest areas
+        if area > min_pixels:
+            vertices1 = np.array([[(x, y), (x + w, y), (x + w, y + h), (x, y + h)]], dtype=np.int32)
+            blue_vertices.append(vertices1)
+    hsvBlue_roi = roi(hsvBlue_roi, blue_vertices)
+
+    _, contours, hierarchy = cv2.findContours(hsvBlue_roi, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_NONE)
+
+    # find traffic light
+    lower_GL = (85, 0, 240)
+    upper_GL = (95, 70, 255)
+    lower_RL = (145, 0, 240)
+    upper_RL = (170, 70, 255)
+    for i in range(len(contours)):
+        approx = cv2.approxPolyDP(contours[i], cv2.arcLength(contours[i], True) * 0.02, True)
+        vtc = len(approx)
+        if vtc == 4 and hierarchy[0][i][2] is not -1:
+            inner_cont = hierarchy[0][i][2]
+            approx = cv2.approxPolyDP(contours[inner_cont], cv2.arcLength(contours[inner_cont], True) * 0.02, True)
+            vtc = len(approx)
+            if vtc == 4:
+                (c_x, c_y, c_w, c_h) = cv2.boundingRect(contours[inner_cont])
+                hsv_TL = hsv[c_y:c_y + c_h, c_x:c_x + c_w]
+                hsv_TL_green = cv2.inRange(hsv_TL, lower_GL, upper_GL)
+                hsv_TL_red = cv2.inRange(hsv_TL, lower_RL, upper_RL)
+                cv2.imshow('TL_G', hsv_TL_green)
+                cv2.imshow('TL_R', hsv_TL_red)
+                for i in hsv_TL_red:
+                    if list(i).count(255) > 4:
+                        i_param = STOP
+                        cv2.rectangle(img_show, (c_x, c_y), (c_x + c_w, c_y + c_h), (255, 0, 0), 1)
+                        cv2.putText(img_show, 'Light', (c_x, c_y + 20), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255))
+                        break
+                for i in hsv_TL_green:
+                    if list(i).count(255) > 4:
+                        i_param = FRONT
+                        cv2.rectangle(img_show, (c_x, c_y), (c_x + c_w, c_y + c_h), (255, 0, 0), 1)
+                        cv2.putText(img_show, 'Light', (c_x, c_y + 20), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0))
+                        break
+                if i_param == NONE:
+                    cv2.rectangle(img_show, (c_x, c_y), (c_x + c_w, c_y + c_h), (255, 0, 0), 1)
+                    cv2.putText(img_show, 'Light', (c_x, c_y + 20), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255))
+
+    if i_param == NONE:
+        i_param = FRONT
+
+    # line ROI
     near_roi_height = 100
     mid_roi_height = 80
     # far_roi_height = 80
@@ -264,10 +336,12 @@ def imageProcess(img):
     mid_height = height - near_roi_height - mid_roi_height
     # far_height = height - near_roi_height - mid_roi_height - far_roi_height
 
+    # detect line
     near_vertices, near_detected = get_roi_square(hsvGreen, img_bin, img_show, near_height, height)
     mid_vertices, mid_detected = get_roi_square(hsvGreen, img_bin, img_show, mid_height, near_height)
     # far_vertices, far_lines = get_roi_square(hsvGreen, img_bin, img_show, far_height, mid_height)
     roi_bin = roi(img_bin, near_vertices + mid_vertices)
+
     detected = [near_detected, mid_detected]
 
     # draw center line
@@ -283,4 +357,4 @@ def imageProcess(img):
     ret, buffer = cv2.imencode('.jpg', img_show)
     frame = buffer.tobytes()
 
-    return frame, detected
+    return frame, detected, i_param
