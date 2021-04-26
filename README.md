@@ -51,8 +51,8 @@
   - Community Version
 - MongoDB (https://www.mongodb.com/)
   - windows_x86_64 x64
-MariaDB (https://downloads.mariadb.org/mariadb/10.3.11/)
-- [mariadb-10.3.11-winx64.msi](https://downloads.mariadb.org/interstitial/mariadb-10.3.11/winx64-packages/mariadb-10.3.11-winx64.msi/from/https%3A//archive.mariadb.org/) 
+-MariaDB (https://downloads.mariadb.org/mariadb/10.3.11/)
+  - [mariadb-10.3.11-winx64.msi]
 - Mosquitto (https://mosquitto.org/)
   - [mosquitto-2.0.10-install-windows-x64.exe](https://mosquitto.org/files/binary/win64/mosquitto-2.0.10-install-windows-x64.exe) (64-bit build, Windows Vista and up, built with Visual Studio Community 2019)
 
