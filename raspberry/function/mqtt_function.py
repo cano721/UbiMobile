@@ -56,8 +56,8 @@ class Shocksensor(Thread):
                 time.sleep(1)
                 if pulsesensorTest.value:
                     value2 = pulsesensorTest.value
-                    self.client.publish("iot/shock", "shock,1,%d" % value2)
-                self.client.publish("iot/shock", "shock,1,0")
+                    self.client.publish("iot/shock", "shock,1122,%d" % value2)
+                self.client.publish("iot/shock", "shock,1122,0")
 
             if str(self.cond) in "stop":
                 print("run종료")

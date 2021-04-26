@@ -27,4 +27,8 @@ urlpatterns = [
     path('park_adminUpdate',views.park_adminUpdate,name='park_adminUpdate'),
     path('inner-page', TemplateView.as_view(template_name='inner-page.html'), name='inner-page'),
     path('',TemplateView.as_view(template_name='startpage.html'), name='startpage'),
+    path('graph1', views.graph1, name='graph1'),
+    path('graph2', views.graph2, name='graph2'),
+    path('graph3', views.graph3, name='graph3'),
+    path('graph4', views.graph4, name='graph4'),
 ]

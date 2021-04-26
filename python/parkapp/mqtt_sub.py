@@ -1,6 +1,9 @@
+from datetime import time
 from threading import Thread
 from django.apps import AppConfig
 import paho.mqtt.client as mqtt
+
+
 
 
 class MyMqtt(Thread):
@@ -31,11 +34,14 @@ class MyMqtt(Thread):
             obj = Parking_floor.objects.get(pf_id=int(data[1]))
             obj.pf_data = int(data[2])
             obj.save()
-        # if data[0] == "shock":
-        #     from parkapp.models import Parking_floor
-        #     obj = Parking_floor.objects.get(pf_id=int(data[1]))
-        #     obj.pf_data = int(data[2])
-        #     obj.save()
+        if data[0] == "shock":
+            from parkapp.models import Users_car_ac
+            shocktime = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+            from parkapp.models import Users_car
+            users_car = Users_car.objects.filter(uc_number=data[1])
+            data = Users_car_ac(uc_id=users_car.uc_id, u_id=users_car.u_id, uc_number=data[1], uca_date=shocktime, uca_pulse=data[2])
+            data.save()
+
 
 
 class Parksub(AppConfig):
