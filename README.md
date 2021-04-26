@@ -52,6 +52,9 @@
 - MongoDB (https://www.mongodb.com/)
   - windows_x86_64 x64
 
+- Mosquitto (https://mosquitto.org/)
+  - [mosquitto-2.0.10-install-windows-x64.exe](https://mosquitto.org/files/binary/win64/mosquitto-2.0.10-install-windows-x64.exe) (64-bit build, Windows Vista and up, built with Visual Studio Community 2019)
+
 
 
 #### 사용장비
@@ -68,9 +71,10 @@
 
 
 
-#### ERD
+#### ERD (https://www.erdcloud.com/d/P4moJLikcMExetmtD)
+![image](https://user-images.githubusercontent.com/77091144/116164023-ee699680-a733-11eb-8cc7-594c83829af3.png)
 
-수정 후 올리기
+
 
 
 
@@ -96,5 +100,11 @@
 박수민 [**soomin98**](https://github.com/soomin98)
 
 배경륜 [**bicycle92**](https://github.com/bicycle92)
+
+
+
+#### 노션 : [3조 2차 프로젝트(3월25일~4월27일) (notion.so)](https://www.notion.so/3-2-3-25-4-27-4da63a880d24465ab0edf36432a2017a)
+
+#### GitHub : https://github.com/cano721/UbiMobile
 
 
