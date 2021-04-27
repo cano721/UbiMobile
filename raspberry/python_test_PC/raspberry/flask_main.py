@@ -24,9 +24,9 @@ def show(camera):
     global auto, last_detected, last_param
     while True:
         frame, img = camera.getStreaming()
-
+        frame, detected, i_param = imageProcess(img)
         if auto:
-            frame, detected, i_param = imageProcess(img)
+            
             if detected[0][0]:
                 last_detected[0] = detected[0]
                 last_param = i_param
@@ -56,6 +56,7 @@ def action(command):
         auto = True
     elif command == "off":
         message = "Auto OFF"
+        motor.stop()
         auto = False
     else:
         message = "Fail"

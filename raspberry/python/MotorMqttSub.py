@@ -10,7 +10,7 @@ class MotorMqttSub:
         client.on_connect = self.on_connect
         client.on_message = self.on_message
         client.connect(hostname, port, 60)
-        self.motor = Motor.Motor(client)
+        self.motor = Motor(client)
         self.motor.start()
         self.motor.setup()
         self.manual = True
@@ -35,7 +35,14 @@ class MotorMqttSub:
 
             if speed is not None:
                 if self.manual:
-                    self.motor.move(speed, leftRatio, rightRatio)
+                    if leftRatio is None and rightRatio is None:
+                        self.motor.move(speed)
+                    elif leftRatio is None:
+                        self.motor.move(speed, rightRatio=rightRatio)
+                    elif rightRatio is None:
+                        self.motor.move(speed, leftRatio=leftRatio)
+                    else:
+                        self.motor.move(speed, leftRatio, rightRatio)
                 else:
                     print("Manual activity locked...")
             elif command == 'on':
@@ -64,7 +71,7 @@ class MotorMqttSub:
 
 if __name__ == "__main__":
     GPIO.setmode(GPIO.BCM)
-    myname = "192.168.200.169"
+    myname = "192.168.0.202"
     try:
         motormqtt = MotorMqttSub(myname)
 

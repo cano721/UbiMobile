@@ -34,102 +34,104 @@ def MotorAuto(detected, param, motor, width=640, height=480):
             if near_detected == d_BOTH:
                 if abs(inv_slope) > 0.7:
                     if inv_slope < 0:
-                        motor.move(speed=40, leftRatio=0)
+                        motor.move(speed=30, leftRatio=0)
                     else:
-                        motor.move(speed=40, rightRatio=0)
+                        motor.move(speed=30, rightRatio=0)
                 elif abs(inv_slope) > 0.4:
                     if inv_slope < 0:
-                        motor.move(speed=40, leftRatio=0.4)
+                        motor.move(speed=30, leftRatio=0.7)
                     else:
-                        motor.move(speed=40, rightRatio=0.4)
-
+                        motor.move(speed=30, rightRatio=0.7)
+                elif abs(inv_slope) < 0.2:
+                    motor.move(speed=40)
                 else:
                     start_point = near_line[2] - (width // 2)
                     if start_point < -thresh_start_point:
-                        motor.move(speed=40, rightRatio=0.8)
+                        motor.move(speed=30, rightRatio=0.8)
                     elif start_point > thresh_start_point:
-                        motor.move(speed=40, leftRatio=0.8)
+                        motor.move(speed=30, leftRatio=0.8)
                     else:
                         motor.move(speed=40)
 
             elif near_detected == d_LEFT:
                 if abs(inv_slope) > 0.7:
                     if inv_slope < 0:
-                        motor.move(speed=40, leftRatio=0)
+                        motor.move(speed=30, leftRatio=0)
                     else:
-                        motor.move(speed=40, rightRatio=0)
+                        motor.move(speed=30, rightRatio=0)
                 elif abs(inv_slope) > 0.4:
                     if inv_slope < 0:
-                        motor.move(speed=40, leftRatio=0.4)
+                        motor.move(speed=30, leftRatio=0.7)
                     else:
-                        motor.move(speed=40, rightRatio=0.4)
+                        motor.move(speed=30, rightRatio=0.7)
                 else:
-                    motor.move(speed=40, rightRatio=0.85)
+                    motor.move(speed=30, rightRatio=0.85)
 
             elif near_detected == d_RIGHT:
                 if abs(inv_slope) > 0.7:
                     if inv_slope < 0:
-                        motor.move(speed=40, leftRatio=0)
+                        motor.move(speed=30, leftRatio=0)
                     else:
-                        motor.move(speed=40, rightRatio=0)
+                        motor.move(speed=30, rightRatio=0)
                 elif abs(inv_slope) > 0.4:
                     if inv_slope < 0:
-                        motor.move(speed=40, leftRatio=0.4)
+                        motor.move(speed=30, leftRatio=0.7)
                     else:
-                        motor.move(speed=40, rightRatio=0.4)
+                        motor.move(speed=30, rightRatio=0.7)
                 else:
-                    motor.move(speed=40, rightRatio=0.85)
+                    motor.move(speed=30, rightRatio=0.85)
 
         elif mid_detected is not d_NONE:
             inv_slope = inverse_slope(mid_line)
             if mid_detected == d_BOTH:
                 if abs(inv_slope) > 1:
                     if inv_slope < 0:
-                        motor.move(speed=40, leftRatio=0)
+                        motor.move(speed=30, leftRatio=0)
                     else:
-                        motor.move(speed=40, rightRatio=0)
+                        motor.move(speed=30, rightRatio=0)
                 elif abs(inv_slope) > 0.5:
                     if inv_slope < 0:
-                        motor.move(speed=40, leftRatio=0.4)
+                        motor.move(speed=30, leftRatio=0.7)
                     else:
-                        motor.move(speed=40, rightRatio=0.4)
-
+                        motor.move(speed=30, rightRatio=0.7)
+                elif abs(inv_slope) < 0.2:
+                    motor.move(speed=40)
                 else:
                     start_point = mid_line[2] - (width // 2)
                     if start_point < -thresh_start_point:
-                        motor.move(speed=40, rightRatio=0.8)
+                        motor.move(speed=30, rightRatio=0.8)
                     elif start_point > thresh_start_point:
-                        motor.move(speed=40, leftRatio=0.8)
+                        motor.move(speed=30, leftRatio=0.8)
                     else:
                         motor.move(speed=40)
 
             elif mid_detected == d_LEFT:
                 if abs(inv_slope) > 0.7:
                     if inv_slope < 0:
-                        motor.move(speed=40, leftRatio=0)
+                        motor.move(speed=30, leftRatio=0)
                     else:
-                        motor.move(speed=40, rightRatio=0)
+                        motor.move(speed=30, rightRatio=0)
                 elif abs(inv_slope) > 0.4:
                     if inv_slope < 0:
-                        motor.move(speed=40, leftRatio=0.4)
+                        motor.move(speed=30, leftRatio=0.7)
                     else:
-                        motor.move(speed=40, rightRatio=0.4)
+                        motor.move(speed=30, rightRatio=0.7)
                 else:
-                    motor.move(speed=40, rightRatio=0.85)
+                    motor.move(speed=30, rightRatio=0.85)
 
             elif mid_detected == d_RIGHT:
                 if abs(inv_slope) > 0.7:
                     if inv_slope < 0:
-                        motor.move(speed=40, leftRatio=0)
+                        motor.move(speed=30, leftRatio=0)
                     else:
-                        motor.move(speed=40, rightRatio=0)
+                        motor.move(speed=30, rightRatio=0)
                 elif abs(inv_slope) > 0.4:
                     if inv_slope < 0:
-                        motor.move(speed=40, leftRatio=0.4)
+                        motor.move(speed=30, leftRatio=0.7)
                     else:
-                        motor.move(speed=40, rightRatio=0.4)
+                        motor.move(speed=30, rightRatio=0.7)
                 else:
-                    motor.move(speed=40, rightRatio=0.85)
+                    motor.move(speed=30, rightRatio=0.85)
 
             else:
                 pass
@@ -140,9 +142,10 @@ def MotorAuto(detected, param, motor, width=640, height=480):
     elif param == STOP:
         motor.stop()
     elif param == LEFTLINE:
-        motor.move(speed=60, leftRatio=0.5)
-        sleep(3)
+        motor.move(speed=40, leftRatio=0.5)
+        sleep(2)
+        motor.move(speed=50, rightRatio=0)
     elif param == RIGHTLINE:
-        motor.move(speed=60, rightRatio=0.5)
-        sleep(3)
-
+        motor.move(speed=40, rightRatio=0.5)
+        sleep(2)
+        motor.move(speed=50, leftRatio=0)

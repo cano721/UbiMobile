@@ -238,7 +238,7 @@ def imageProcess(img):
 
     ##################################################
     img_show = img.copy()
-    weighted_img(img, img)
+    # weighted_img(img, img)
 
     # gray scaling
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -291,10 +291,10 @@ def imageProcess(img):
     _, contours, hierarchy = cv2.findContours(hsvBlue_roi, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_NONE)
 
     # find traffic light
-    lower_GL = (85, 0, 240)
-    upper_GL = (95, 70, 255)
-    lower_RL = (145, 0, 240)
-    upper_RL = (170, 70, 255)
+    lower_GL = (60, 0, 200)
+    upper_GL = (100, 100, 255)
+    lower_RL = (0, 0, 150)
+    upper_RL = (30, 100, 255)
     for i in range(len(contours)):
         approx = cv2.approxPolyDP(contours[i], cv2.arcLength(contours[i], True) * 0.02, True)
         vtc = len(approx)
@@ -308,9 +308,9 @@ def imageProcess(img):
                 hsv_TL_green = cv2.inRange(hsv_TL, lower_GL, upper_GL)
                 hsv_TL_red = cv2.inRange(hsv_TL, lower_RL, upper_RL)
                 # cv2.imshow('TL_G', hsv_TL_green)
-                # cv2.imshow('TL_R', hsv_TL_red)
+                cv2.imshow('TL_R', hsv_TL_red)
                 for i in hsv_TL_red:
-                    if list(i).count(255) > 5:
+                    if list(i).count(255) > 2:
                         i_param = STOP
                         cv2.rectangle(img_show, (c_x, c_y), (c_x + c_w, c_y + c_h), (255, 0, 0), 1)
                         cv2.putText(img_show, 'Light', (c_x, c_y + 20), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255))

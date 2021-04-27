@@ -10,6 +10,7 @@ class Motor(threading.Thread):
 
     def __init__(self, client):
         super().__init__()
+
         self.client = client
         self.pinList = None
         self.motorA = None
@@ -21,9 +22,10 @@ class Motor(threading.Thread):
         for pin in self.pinList:
             GPIO.setup(pin, GPIO.OUT)
 
-        # 모터 제어 파라미터 저장, 100kHz로 PWM 동작
-        self.motorA = [GPIO.PWM(self.pinList[0], 100), self.pinList[1], self.pinList[2]]
-        self.motorB = [GPIO.PWM(self.pinList[3], 100), self.pinList[4], self.pinList[5]]
+        # 모터 제어 파라미터 저장, 70kHz로 PWM 동작
+        pwm_freq = 70
+        self.motorA = [GPIO.PWM(self.pinList[0], pwm_freq), self.pinList[1], self.pinList[2]]
+        self.motorB = [GPIO.PWM(self.pinList[3], pwm_freq), self.pinList[4], self.pinList[5]]
         # PWM 멈춤
         self.motorA[0].start(0)
         self.motorB[0].start(0)
@@ -63,6 +65,7 @@ class Motor(threading.Thread):
             GPIO.output(motor[1], GPIO.LOW)
             GPIO.output(motor[2], GPIO.HIGH)
 
+
     # 정지
     def stop(self):
         self.setMotor(Motor.MotorA, 0)
@@ -70,19 +73,16 @@ class Motor(threading.Thread):
 
     # 이동
     def move(self, speed, leftRatio=1.0, rightRatio=1.0):
+        print(speed, leftRatio, rightRatio)
         # 입력값 제한
         if abs(speed) < 0.01:
             self.stop()
         else:
-            if not leftRatio:
-                leftRatio = 1.0
-            elif leftRatio > 1:
+            if leftRatio > 1:
                 leftRatio = 1.0
             elif leftRatio < -1:
                 leftRatio = -1.0
-            if not rightRatio:
-                rightRatio = 1.0
-            elif rightRatio > 1:
+            if rightRatio > 1:
                 rightRatio = 1.0
             elif rightRatio < -1:
                 rightRatio = -1.0
@@ -109,6 +109,7 @@ if __name__ == "__main__":
     print("후진")
     sleep(sleepTime)
     myMotor.move(0.0099)
+
     print("정지")
     sleep(sleepTime)
     myMotor.move(mSpeed, rightRatio=-1)
