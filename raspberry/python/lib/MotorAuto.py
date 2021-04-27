@@ -1,4 +1,4 @@
-from flasktest.Motor import Motor
+from lib.Motor import Motor
 from time import sleep
 
 # param values
@@ -15,6 +15,7 @@ d_RIGHT = 2
 d_BOTH = 3
 # parameters
 thresh_start_point = 80
+
 
 def MotorAuto(detected, param, motor, width=640, height=480):
     def inverse_slope(line):

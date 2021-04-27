@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4516037e-ce94-4880-b2ec-b91d02a3caf9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/raspberry/flask_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspberry/flask_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flasktest/templates/video.html" beforeDir="false" afterPath="$PROJECT_DIR$/flasktest/templates/video.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspberry/templates/video.html" beforeDir="false" afterPath="$PROJECT_DIR$/raspberry/templates/video.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/video.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/video.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,11 +23,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/raspberry/lib" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/flasktest/templates" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\ubimobile\raspberry\python_test_PC\flasktest\templates" />
       <recent name="C:\ubimobile\raspberry\python_test_PC\raspberry\lib" />
       <recent name="C:\ubimobile\raspberry\python_test_PC\raspberry\templates" />
       <recent name="C:\ubimobile\raspberry\python_test_PC\templates" />
@@ -106,5 +109,15 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/raspberry/lib/MotorAuto.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

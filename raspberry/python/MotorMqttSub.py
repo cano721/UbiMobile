@@ -1,4 +1,4 @@
-from raspberry.lib import Motor
+from lib.Motor import Motor
 import paho.mqtt.client as mqtt
 from json import loads as loadsJson
 import RPi.GPIO as GPIO

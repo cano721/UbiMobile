@@ -1,10 +1,10 @@
 from flask import Flask, render_template, Response
 import RPi.GPIO as GPIO
 import cv2
-from Camera import Camera
-from raspberry.lib.imageProcess import imageProcess
-from raspberry.lib.Motor import Motor
-from raspberry.lib.MotorAuto import MotorAuto
+from lib.Camera import Camera
+from lib.imageProcess import imageProcess
+from lib.Motor import Motor
+from lib.MotorAuto import MotorAuto
 # from MotormqttSub import MotormqttSub
 
 app = Flask(__name__)

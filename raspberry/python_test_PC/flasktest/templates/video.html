@@ -5,25 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>Flask LED제어</h1>
-    <h3>
-        <!-- flask에서 넘겨주는 데이터를 사용 - jinja2라는 프레임워크를 이용 -->
-        {% if message %}
-            {{ message }}
-        {% endif %}
-
-        {% if status == True %}
-            (<a href="/off">자동 주행 끄기</a>)
-        {% else %}
-            (<a href="/on">자동 주행 켜기</a>)
-        {% endif %}
-
-        <div class="imageView">
-            <img src="{{ url_for('showVideo') }}" width="80%">
-        </div>
-        <form>
-            <>
-        </form>
-    </h3>
+    <div class="imageView">
+        <img src="{{ url_for('showVideo') }}" width="100%">
+    </div>
 </body>
 </html>
