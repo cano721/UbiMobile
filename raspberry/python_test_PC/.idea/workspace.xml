@@ -2,17 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4516037e-ce94-4880-b2ec-b91d02a3caf9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../python/adminapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../python/adminapp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python/loginapp/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python/loginapp/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python/parkapp/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python/parkapp/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python/parkapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../python/parkapp/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python/parkapp/mqtt_sub.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../python/parkapp/mqtt_sub.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python/parkapp/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../python/parkapp/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python/templates/admin/park_adminpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../python/templates/admin/park_adminpage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../function/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../function/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../function/mqtt_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/../function/mqtt_function.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/raspberry/templates/video.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MotorAuto.py" beforeDir="false" afterPath="$PROJECT_DIR$/MotorAuto.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flasktest/flask_camTest1.py" beforeDir="false" afterPath="$PROJECT_DIR$/flasktest/flask_camTest1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imageProcess.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageProcess.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/video.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/video.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +27,67 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/raspberry/templates" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\ubimobile\raspberry\python_test_PC\raspberry\templates" />
+      <recent name="C:\ubimobile\raspberry\python_test_PC\templates" />
+      <recent name="C:\ubimobile\raspberry\python_test_PC\raspberry" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\ubimobile\raspberry\python_test_PC\raspberry\lib" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="python_test_PC" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\ubimobile\raspberry\python_test_PC\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/.." />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="videoTest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="python_test_PC" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/camera/videoTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.videoTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -54,5 +110,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

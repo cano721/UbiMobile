@@ -1,15 +1,10 @@
-from flask import Flask, render_template, request, Response
+from flask import Flask, render_template, Response
 import RPi.GPIO as GPIO
-import picamera
 import cv2
-import numpy as np
-import io
-import threading
-from time import sleep
 from Camera import Camera
-from imageProcess import imageProcess
-from Motor import Motor
-from MotorAuto import MotorAuto
+from raspberry.lib.imageProcess import imageProcess
+from raspberry.lib.Motor import Motor
+from raspberry.lib.MotorAuto import MotorAuto
 # from MotormqttSub import MotormqttSub
 
 app = Flask(__name__)
