@@ -1,4 +1,4 @@
-# UbiMobile(유비모빌)
+# UbiMobility(유비모빌리티)
 
 #### 프로젝트 개요
 
