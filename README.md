@@ -1,5 +1,13 @@
 # UbiMobility(유비모빌리티)
 
+
+
+#### [PPT 자료](./ubimobility.pptx)
+
+#### 노션 : [3조 2차 프로젝트(3월25일~4월27일) (notion.so)](https://www.notion.so/3-2-3-25-4-27-4da63a880d24465ab0edf36432a2017a)
+
+
+
 #### 프로젝트 개요
 
 - 자율주행 자동차 프로젝트
@@ -25,13 +33,13 @@
 
 - 주차관리(압력패드) - 주차패드 위 압력패드 - 라인트레이서 연결
 
-  
-
 - 미구현 
 
   - 신호등 인식하여 자율주행
   - 차량 이동구간 확인(GPS)
   - 차량 관리 내용(주행km, 차량정비날짜 등)
+
+
 
 
 
@@ -100,10 +108,5 @@
 
 배경륜 [**bicycle92**](https://github.com/bicycle92)
 
-
-
-#### 노션 : [3조 2차 프로젝트(3월25일~4월27일) (notion.so)](https://www.notion.so/3-2-3-25-4-27-4da63a880d24465ab0edf36432a2017a)
-
-#### GitHub : https://github.com/cano721/UbiMobile
 
 
